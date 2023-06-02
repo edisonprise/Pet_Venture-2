@@ -1,15 +1,20 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: process.env.NEXT_PUBLIC_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-  storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
-  messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
-  appId: process.env.NEXT_PUBLIC_APP_ID,
+  apiKey: "AIzaSyAdjrZCa-2WG82dmHU1aII0g6cRdKYzoQg",
+  authDomain: "pet-venture-1777a.firebaseapp.com",
+  projectId: "pet-venture-1777a",
+  storageBucket: "pet-venture-1777a.appspot.com",
+  messagingSenderId: "202804090837",
+  appId: "1:202804090837:web:69fcf8f98a1c2eefc20f5c",
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+
+export const getAllProducts = () => {
+  return getDocs(collection(db, "productos"));
+};
 
 export default db;
