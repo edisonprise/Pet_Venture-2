@@ -8,11 +8,15 @@ const Navbar = () => {
   return (
     <div className={styles.navbar}>
       <div className={styles.logo}>
-      <img src={PetVenture.src} width="300px" height="100px" alt="Logo" />
+        <img src={PetVenture.src} width="300px" height="100px" alt="Logo" />
       </div>
-      <SearchBar/>
+      <SearchBar />
+
       <div className={styles.menu}>
         <ul className={styles.menuList}>
+          <li>
+            <Link href="/filtros">Filtros</Link>
+          </li>
           <li>
             <Link href="/nosotros">Nosotros</Link>
           </li>
