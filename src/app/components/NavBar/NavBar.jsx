@@ -26,7 +26,7 @@ const Navbar = () => {
             <Link href="/tienda">Tienda</Link>
           </li>
           <li>
-            <Link href="/login">Ingresa/Registrate</Link>
+            <Link href="/formproducts">Producto</Link>
           </li>
         </ul>
       </div>
