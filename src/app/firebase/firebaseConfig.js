@@ -13,8 +13,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-export const getAllProducts = () => {
-  return getDocs(collection(db, "productos"));
+export const getAllProducts = async () => {
+  const querySnapshot = await getDocs(collection(db, "productos"));
+  const products = [];
+  querySnapshot.forEach((doc) => {
+    products.push({ id: doc.id, ...doc.data() });
+  });
+  return products;
 };
 
 export default db;

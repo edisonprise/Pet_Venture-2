@@ -2,7 +2,7 @@ import { GET_PRODUCTS, USERS_ERROR } from "./actions";
 
 const initialState = {
   products: [],
-  //   loading: true,
+  paginaactual: 1,
 };
 
 export default function (state = initialState, action) {
@@ -11,11 +11,9 @@ export default function (state = initialState, action) {
       return {
         ...state,
         products: action.payload,
-        // loading: false,
       };
     case USERS_ERROR:
       return {
-        // loading: false,
         error: action.payload,
       };
     default:

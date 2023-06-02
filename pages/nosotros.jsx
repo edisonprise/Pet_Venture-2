@@ -1,3 +1,5 @@
-import Nosotros from "@/app/Components/NavBar/Nosotros/Nosotros";
+
+import Nosotros from "@/app/Components/Nosotros/Nosotros";
+
 
 export default Nosotros; 
