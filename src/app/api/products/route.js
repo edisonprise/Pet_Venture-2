@@ -1,4 +1,5 @@
-import { getAllProducts } from "@/app/firebase/firebaseConfig";
+import { getAllProducts } from "@/app/Firebase/firebaseConfig";
+
 export async function GET() {
   const products = [];
   const querySnampshot = await getAllProducts();
