@@ -4,7 +4,7 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
 
-    const name = searchParams.get("name");
+    const id = searchParams.get("id");
 
     const products = [];
     const result = [];
@@ -15,7 +15,7 @@ export async function GET(request) {
     });
 
     products.forEach((obj) => {
-      if (name.toUpperCase() === obj.name.toUpperCase()) {
+      if (id === obj.id) {
         result.push(obj);
       }
     });
