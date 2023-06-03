@@ -42,7 +42,7 @@
 .formulario input,
 .formulario textarea {
   font-family: Arial, Helvetica, sans-serif;
-  width: 100%;
+  width: 50%;
   border-radius: 5px;
   border: 2px solid #e2e2e2;
   font-size: 18px;
@@ -69,7 +69,7 @@
   font-family: Arial, Helvetica, sans-serif;
   border: none;
   cursor: pointer;
-  width: 100%;
+  width: 50%;
   padding: 10px;
   border-radius: 5px;
   color: #fff;

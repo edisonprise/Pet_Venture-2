@@ -83,7 +83,7 @@ const Formulario = () => {
         }}
       >
         {({ errors }) => (
-          <Form className="formulario">
+          <Form className={styles.formulario}>
             <div>
               <label htmlFor="product_name">Product Name</label>
               <Field
