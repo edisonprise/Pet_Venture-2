@@ -1,14 +1,13 @@
 import { NextResponse } from "next/server";
 import { getAllProducts } from "@/app/Firebase/firebaseConfig";
 export async function GET(request) {
-  try {
-    const { searchParams } = new URL(request.url);
+  const { searchParams } = new URL(request.url);
+  const products = [];
+  const result = [];
 
-    const id = searchParams.get("id");
+  const id = searchParams.get("id");
 
-    const products = [];
-    const result = [];
-
+  if (id) {
     const querySnampshot = await getAllProducts();
     querySnampshot.forEach((doc) => {
       products.push(doc);
@@ -21,7 +20,7 @@ export async function GET(request) {
     });
 
     return NextResponse.json(result);
-  } catch (error) {
-    return NextResponse(error);
+  } else {
+    return NextResponse.json({ error: "faltan datos" });
   }
 }
