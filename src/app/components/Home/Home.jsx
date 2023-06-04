@@ -1,16 +1,20 @@
 import React, { useEffect } from "react";
 import Navbar from "../NavBar/NavBar";
+import Slider from "../Slider/Slider.jsx";
 
+import Ofertas from "../Ofertas/Ofertas";
 
-
-export default function Home() {
+const Home = () => {
+ 
 
   return (
     <div>
- 
-
-
-      <Navbar />
+      <Navbar/>
+      <Slider/>
+      <Ofertas/>
+      
     </div>
   );
-}
+};
+
+export default Home;
