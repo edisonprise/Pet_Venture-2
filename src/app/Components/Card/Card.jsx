@@ -1,31 +1,24 @@
-// import React from "react";
+import React from 'react';
+import styles from './Card.module.css';
 
-// //import { deleteDog, getDogs } from "../../redux/actions";
+function Card({ categoria, id, image, price, name }) {
+  return (
+    <div className={styles.container}>
+        <img className={styles.img} src={image} alt="Not found" />
+      <div className={styles.card}>
 
-// export default function CardComponent({ id, image, name, temperament, weight_min, weight_max, createdInDb, dispatch }) {
-// //   function handleDelete(e, id) {
-// //     e.preventDefault();
-// //     dispatch(deleteDog(id));
-// //     dispatch(getDogs());
-// //   }
-//   return (
-//     <div className="card">
-//       {createdInDb ? (
-//         <div>
-//           <img src={image} alt="img not found" />
-//           <h3>{name}</h3>
-//           <h5>Temperament: {temperament}</h5>
-//           <h5>Weight: {weight_min} - {weight_max} lb</h5>
-//           <button onClick={(e) => handleDelete(e, id)}>Delete</button>
-//         </div>
-//       ) : (
-//         <div>
-//           <img src={image} alt="img not found" />
-//           <h3>{name}</h3>
-//           <h5>Temperament: {temperament}</h5>
-//           <h5>Weight: {weight_min} - {weight_max} lb</h5>
-//         </div>
-//       )}
-//     </div>
-//   );
-// }; 
+        <div className={styles.contenedorcard}>
+          <h3 className={styles.namedog}>{name}</h3>
+        </div>
+
+        <div className={styles.namedescription}>
+          <h2>{price}</h2>
+          <h5>{id}</h5>
+          <h3>{categoria}</h3>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Card;
