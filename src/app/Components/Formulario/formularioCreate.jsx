@@ -4,30 +4,16 @@ import styles from "./formularioCreate.module.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import Link from "next/link";
 
 const Formulario = () => {
-  /* let initialValues = {
-    Product_name: "",
-    Brand: "",
-    Brand_url: "",
-    Price: "",
-    Image: "",
-    Image_url: "",
-    Select_cities: "",
-    Options: "",
-  }; */
-
-  /* const enviarForm = (data) => {
-    console.log(data);
-  }; */
-  console.log(styles);
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
       name: "",
-      Brand: "",
-      Price: "",
-      Image: "",
-      Category: "",
+      brand: "",
+      price: "",
+      image: "",
+      category: "",
       subCategory: "",
     },
 
@@ -36,21 +22,21 @@ const Formulario = () => {
         .max(20, "Maximo 20 caracteres")
         .min(5, "Minimo 5 caracteres")
         .required("Required"),
-      Brand: Yup.string()
+      brand: Yup.string()
         .max(20, "Maximo 20 caracteres")
         .min(5, "Minimo 5 caracteres")
         .required("Requerido"),
-      Price: Yup.number()
+      price: Yup.number()
         .min(1, "El precio debe ser mayor a 1")
         .required("Requerido"),
-      Image: Yup.string()
+      image: Yup.string()
         .url("Debe ser una URL")
         .matches(
           /^https?:\/\/[^\s/$.?#].[^\s]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/i,
           "El URL debe ser una imagen"
         )
         .required("Requerido"),
-      Category: Yup.string()
+      category: Yup.string()
         .max(20, "Maximo 20 caracteres")
         .min(5, "Minimo 5 caracteres")
         .required("Requerido"),
@@ -66,14 +52,15 @@ const Formulario = () => {
     },
   });
   return (
-    <div>
-      <h2> Crear Producto</h2>
+    <div className={styles["body"]}>
       <form className={styles["form-container"]} onSubmit={handleSubmit}>
+        <h2> Crear Producto</h2>
         <Grid.Container gap={4}>
           <Grid>
             <Input
               rounded
               bordered
+              className={styles["field"]}
               type="text"
               label="name"
               placeholder="name"
@@ -89,66 +76,71 @@ const Formulario = () => {
             <Input
               rounded
               bordered
+              className={styles["field"]}
               type="text"
-              label="Brand"
-              placeholder="Brand"
+              label="brand"
+              placeholder="brand"
               color="default"
-              name="Brand"
+              name="brand"
               onChange={handleChange}
-              value={values.Brand}
-              error={errors.Brand}
-              helperText={errors.Brand}
+              value={values.brand}
+              error={errors.brand}
+              helperText={errors.brand}
             />
           </Grid>
           <Grid>
             <Input
               rounded
               bordered
+              className={styles["field"]}
               type="Number"
-              label="Price"
-              placeholder="Price"
+              label="price"
+              placeholder="price"
               color="default"
-              name="Price"
+              name="price"
               onChange={handleChange}
-              value={values.Price}
-              error={errors.Price}
-              helperText={errors.Price}
+              value={values.price}
+              error={errors.price}
+              helperText={errors.price}
             />
           </Grid>
           <Grid>
             <Input
               rounded
               bordered
+              className={styles["field"]}
               type="text"
-              label="Image"
-              placeholder="Image"
+              label="image"
+              placeholder="image"
               color="default"
-              name="Image"
+              name="image"
               onChange={handleChange}
-              value={values.Image}
-              error={errors.Image}
-              helperText={errors.Image}
+              value={values.image}
+              error={errors.image}
+              helperText={errors.image}
             />
           </Grid>
           <Grid>
             <Input
               rounded
               bordered
+              className={styles["field"]}
               type="text"
-              label="Category"
-              placeholder="Category"
+              label="category"
+              placeholder="category"
               color="default"
-              name="Category"
+              name="category"
               onChange={handleChange}
-              value={values.Category}
-              error={errors.Category}
-              helperText={errors.Category}
+              value={values.category}
+              error={errors.category}
+              helperText={errors.category}
             />
           </Grid>
           <Grid>
             <Input
               rounded
               bordered
+              className={styles["field"]}
               type="text"
               label="subCategory"
               placeholder="subCategory"
@@ -161,7 +153,14 @@ const Formulario = () => {
             />
           </Grid>
         </Grid.Container>
-        <Button type="submit">Enviar</Button>
+        <div className={styles["btn-cont"]}>
+          <Button type="submit" className={styles["btn-green"]}>
+            Enviar
+          </Button>
+          <Link href="/">
+            <Button className={styles["btn-green"]}>Home</Button>
+          </Link>
+        </div>
       </form>
     </div>
   );
