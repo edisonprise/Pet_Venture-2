@@ -120,6 +120,7 @@ const Formulario = () => {
               value={values.image}
               error={errors.image}
               helperText={errors.image}
+              
             />
           </Grid>
           <Grid>
