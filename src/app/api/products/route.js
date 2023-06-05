@@ -1,4 +1,4 @@
-import { getAllProducts } from "@/app/Firebase/firebaseConfig";
+import { getAllProducts } from "@/app/firebase/firebaseConfig";
 
 export async function GET() {
   const products = [];

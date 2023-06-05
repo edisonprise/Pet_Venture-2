@@ -6,18 +6,27 @@ import Ofertas from "../Ofertas/Ofertas";
 import Ofertas2 from "../Ofertas2/Ofertas2";
 import Footer from "../Footer/Footer";
 
-const Home = () => {
- 
+import { useDispatch } from "react-redux";
+import { getProducts } from "../../../../redux/actions";
+
+import {
+  getBrands,
+  getCategories,
+  getSubCategories,
+} from "../../../../redux/actions";
+export default function Home() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
 
   return (
     <div>
-      <Navbar/>
-      <Slider/>
-      <Ofertas/>
-      <Ofertas2/>
+      <Navbar />
+      <Slider />
+      <Ofertas />
+      <Ofertas2 />
       <Footer></Footer>
     </div>
   );
-};
-
-export default Home;
+}
