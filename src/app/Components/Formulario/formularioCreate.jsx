@@ -94,6 +94,8 @@ const Formulario = () => {
               bordered
               className={styles["field"]}
               type="Number"
+              min={1}
+              max={100}
               label="price"
               placeholder="price"
               color="default"
