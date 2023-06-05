@@ -23,7 +23,7 @@ const Formulario = () => {
   console.log(styles);
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues: {
-      Product_name: "",
+      name: "",
       Brand: "",
       Price: "",
       Image: "",
@@ -32,7 +32,7 @@ const Formulario = () => {
     },
 
     validationSchema: Yup.object({
-      Product_name: Yup.string()
+      name: Yup.string()
         .max(20, "Maximo 20 caracteres")
         .min(5, "Minimo 5 caracteres")
         .required("Required"),
@@ -40,11 +40,16 @@ const Formulario = () => {
         .max(20, "Maximo 20 caracteres")
         .min(5, "Minimo 5 caracteres")
         .required("Requerido"),
-      Price: Yup.number().min(1,"El precio debe ser mayor a 1")
-                .required("Requerido"),
-      Image: Yup.string().url("Debe ser una URL")
-                .matches(/^https?:\/\/[^\s/$.?#].[^\s]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/i,"El URL debe ser una imagen")
-                .required("Requerido"),
+      Price: Yup.number()
+        .min(1, "El precio debe ser mayor a 1")
+        .required("Requerido"),
+      Image: Yup.string()
+        .url("Debe ser una URL")
+        .matches(
+          /^https?:\/\/[^\s/$.?#].[^\s]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/i,
+          "El URL debe ser una imagen"
+        )
+        .required("Requerido"),
       Category: Yup.string()
         .max(20, "Maximo 20 caracteres")
         .min(5, "Minimo 5 caracteres")
@@ -70,14 +75,14 @@ const Formulario = () => {
               rounded
               bordered
               type="text"
-              label="Product_name"
-              placeholder="Product_name"
+              label="name"
+              placeholder="name"
               color="default"
-              name="Product_name"
+              name="name"
               onChange={handleChange}
-              value={values.Product_name}
-              error={errors.Product_name}
-              helperText={errors.Product_name}
+              value={values.name}
+              error={errors.name}
+              helperText={errors.name}
             />
           </Grid>
           <Grid>
