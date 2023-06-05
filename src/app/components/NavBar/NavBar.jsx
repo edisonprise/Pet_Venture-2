@@ -3,26 +3,24 @@ import Link from "next/link";
 import PetVenture from "../../../../public/img/PetVenture.svg";
 import styles from "./Navbar.module.css";
 
-
 const Navbar = () => {
   return (
     <div className={styles.navbar}>
       <div className={styles.logo}>
-      <img src={PetVenture.src} width="300px" height="100px" alt="Logo" />
+        <img src={PetVenture.src} width="300px" height="100px" alt="Logo" />
       </div>
-      
+
       <div className={styles.menu}>
         <ul className={styles.menuList}>
           <li>
             <Link href="/nosotros">Nosotros</Link>
           </li>
-         
 
           <li>
             <Link href="/tienda">Tienda</Link>
           </li>
           <li>
-            <Link href="/formproducts">Producto</Link>
+            <Link href="/formulario">Crear Producto</Link>
           </li>
         </ul>
       </div>
