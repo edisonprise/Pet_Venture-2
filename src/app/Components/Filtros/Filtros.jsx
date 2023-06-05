@@ -16,6 +16,10 @@ const Filtros = () => {
 
   const allProducts = useSelector((state) => state.products);
 
+  const [brandSelect, setBrandSelect] = useState("");
+  const [categorySelect, setCategorySelect] = useState("");
+  const [subCategorySelect, setSubCategorySelect] = useState("");
+
   let brands = useSelector((state) => state.brands);
   let categories = useSelector((state) => state.categories);
   let subCategories = useSelector((state) => state.subCategories);
@@ -27,6 +31,7 @@ const Filtros = () => {
     subCategory: "none",
     price: "none",
   });
+
   useEffect(() => {
     dispatch(getProducts());
     const filterBrands = () => {
@@ -60,7 +65,7 @@ const Filtros = () => {
 
     if (productsCopy.length > 0) {
       let j = 0;
-      console.log("brands", brands);
+      // console.log("brands", brands);
 
       for (let i = 0; i < productsCopy.length; i++) {
         if (productsCopy[i].hasOwnProperty("category")) {
@@ -70,7 +75,7 @@ const Filtros = () => {
       // console.log("jota", j);
       if (filterPanel.name !== "") {
         productsCopy = productsCopy.filter((p) =>
-          p.name?.includes(filterPanel.name)
+          p.name?.toLowerCase().includes(filterPanel.name.toLowerCase())
         );
       }
 
@@ -124,38 +129,52 @@ const Filtros = () => {
     });
   };
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.container}>
-        <div className={styles.selectContainer}>
-          <div className={styles.searchContainer}>
-            <input
-              name="name"
-              value={filterPanel.name}
-              className={styles.input}
-              onChange={handleChange}
-              placeholder="Search..."
-            ></input>
-            <button
-              name="name"
-              value={filterPanel.name}
-              type="submit"
-              className={styles.button}
-              onClick={handleNameClick}
-            >
-              Search Name
-            </button>{" "}
-          </div>
+  const handleResetClick = (e) => {
+    e.preventDefault();
+    setFilterPanel({
+      name: "",
+      brand: "none",
+      category: "none",
+      subCategory: "none",
+      price: "none",
+    });
+    setBrandSelect("");
+    setCategorySelect("");
+    setSubCategorySelect("");
+  };
 
-          <label htmlFor="" className={styles.label}>
+  return (
+    <div>
+      <div className={styles.container}>
+        <div className={styles.searchContainer}>
+          <input
+            name="name"
+            value={filterPanel.name}
+            className={styles.input}
+            onChange={handleChange}
+            placeholder="Search..."
+          ></input>
+          <button
+            name="name"
+            value={filterPanel.name}
+            type="submit"
+            className={styles.searchButton}
+            onClick={handleNameClick}
+          >
+            Search Name
+          </button>{" "}
+        </div>
+        <div className={styles.selectContainer}>
+          {/* <label htmlFor="" className={styles.label}>
             Brand
-          </label>
+          </label> */}
 
           <select
             id="brand"
             name="brand"
             className={styles.select}
             onChange={(e) => handleChange(e)}
+            value={brandSelect}
           >
             <option value={"none"}>Filter by Brand</option>
             {/* {console.log("filtros", brands)} */}
@@ -168,17 +187,21 @@ const Filtros = () => {
         </div>
 
         <div className={styles.selectContainer}>
-          <label htmlFor="" className={styles.label}>
+          {/* <label htmlFor="" className={styles.label}>
             Category
-          </label>
+          </label> */}
           <select
             id="category"
             name="category"
             className={styles.select}
             onChange={(e) => handleChange(e)}
+            value={categorySelect}
+            // placeholder="Filter by Category"
           >
             {" "}
-            <option value={"none"}>Filter by Category</option>
+            <option value={"none"} defaultValue={"Filter by Category"}>
+              Filter by Category
+            </option>
             {/* {console.log("filtros", brands)} */}
             {categories?.map((c, i) => (
               <option key={i} value={c}>
@@ -189,14 +212,15 @@ const Filtros = () => {
         </div>
 
         <div className={styles.selectContainer}>
-          <label htmlFor="" className={styles.label}>
+          {/* <label htmlFor="" className={styles.label}>
             SubCategory
-          </label>
+          </label> */}
           <select
             id="subCategory"
             name="subCategory"
             className={styles.select}
             onChange={(e) => handleChange(e)}
+            value={subCategorySelect}
           >
             <option value={"none"}>Filter by SubCategory</option>
             {/* {console.log("filtros", brands)} */}
@@ -208,9 +232,9 @@ const Filtros = () => {
           </select>
         </div>
         <div className={styles.selectContainer}>
-          <label htmlFor="" className={styles.label}>
+          {/* <label htmlFor="" className={styles.label}>
             Price
-          </label>
+          </label> */}
           <select
             id="price"
             name="price"
@@ -219,7 +243,7 @@ const Filtros = () => {
           >
             {" "}
             <option key="none" value="none">
-              None
+              Price
             </option>
             <option key="higher" value="higher">
               Higher
@@ -230,10 +254,8 @@ const Filtros = () => {
           </select>
         </div>
 
-        <button className={styles.deleteFilter}>
-          {/* <span className={styles.shadow}></span> */}
-          <span className={styles.edge}></span>
-          <span className={styles.front}>Borrar Filtros</span>
+        <button className={styles.deleteFilter} onClick={handleResetClick}>
+          <span className={styles.front}>Reset</span>
         </button>
       </div>
     </div>
