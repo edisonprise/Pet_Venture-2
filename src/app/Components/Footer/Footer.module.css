@@ -1,0 +1,31 @@
+/* Footer.module.css */
+
+.footerContainer {
+    background-color: #333;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .footerText {
+    color: #fff;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .footerLinks {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .footerLink {
+    color: #ccc;
+    font-size: 12px;
+    margin: 0 10px;
+    text-decoration: none;
+  }
+  
+  .footerLink:hover {
+    text-decoration: underline;
+    color: #fff;
+  }
+  

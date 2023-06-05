@@ -1,0 +1,54 @@
+/* ofertas.module.css */
+
+.ofertasContainer {
+  margin: 20px;
+}
+
+.ofertasTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+  font-family: "Arial", sans-serif;
+}
+
+.ofertasGrid {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 10px;
+}
+
+.cardContainer {
+  width: 200px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.cardImage {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.cardName {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Espacio entre las imágenes */
+}
+
+.offerImage {
+  width: 50%; /* Ancho deseado */
+  height: 20%; /* Altura ajustada automáticamente */
+  margin-right: 10px; /* Espacio horizontal entre las imágenes */
+}

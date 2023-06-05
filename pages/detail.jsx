@@ -1,3 +1,3 @@
-// import Detail from "@/app/Components/Detail/Detail";
+//  import Detail from "@/app/Components/Detail/Detail";
 
-// export default Detail; 
+//  export default Detail; 
