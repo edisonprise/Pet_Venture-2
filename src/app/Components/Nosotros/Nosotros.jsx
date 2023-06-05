@@ -17,7 +17,6 @@ const Nosotros = () => {
 
         ¡Únete a nuestra comunidad de amantes de los animales y descubre la forma más conveniente de comprar y vender productos para tus mascotas!
       </div>
-      <button href="/">Inicio</button>
     </div>
   );
 };

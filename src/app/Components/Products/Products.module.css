@@ -1,0 +1,45 @@
+.productos {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: calc(100% - 150px);
+    color: #030202;
+    
+  }
+  
+  .productos .card {
+    border: 1px solid #de0c0c;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(202, 6, 6, 0.1);
+    padding: 16px;
+    text-align: center;
+    width: calc(25% - 20px);
+    box-sizing: border-box;
+    height: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .productos .card .img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .productos .card .namedog {
+    color: rgb(216, 6, 6);
+    margin-bottom: 4px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
