@@ -32,20 +32,27 @@ const Formulario = () => {
     },
 
     validationSchema: Yup.object({
-      Product_name: Yup.string().required(
-        "Por favor ingresa nombre del producto"
-      ),
-      Brand: Yup.string().required(
-        "Por favor ingresa nombre de la marca producto"
-      ),
-      Price: Yup.number().required("Por favor ingresa precio del producto"),
-      Image: Yup.string().required("Por favor ingresa imagen del producto"),
-      Category: Yup.string().required(
-        "Por favor ingresa categoria del producto"
-      ),
-      subCategory: Yup.string().required(
-        "Por favor ingresa subcategoria del producto"
-      ),
+      Product_name: Yup.string()
+        .max(20, "Maximo 20 caracteres")
+        .min(5, "Minimo 5 caracteres")
+        .required("Required"),
+      Brand: Yup.string()
+        .max(20, "Maximo 20 caracteres")
+        .min(5, "Minimo 5 caracteres")
+        .required("Requerido"),
+      Price: Yup.number().min(1,"El precio debe ser mayor a 1")
+                .required("Requerido"),
+      Image: Yup.string().url("Debe ser una URL")
+                .matches(/^https?:\/\/[^\s/$.?#].[^\s]*\.(gif|jpe?g|tiff?|png|webp|bmp)$/i,"El URL debe ser una imagen")
+                .required("Requerido"),
+      Category: Yup.string()
+        .max(20, "Maximo 20 caracteres")
+        .min(5, "Minimo 5 caracteres")
+        .required("Requerido"),
+      subCategory: Yup.string()
+        .max(20, "Maximo 20 caracteres")
+        .min(5, "Minimo 5 caracteres")
+        .required("Requerido"),
     }),
 
     onSubmit: async (values) => {
