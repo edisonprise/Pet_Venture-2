@@ -5,12 +5,10 @@ import {
   getBrands,
   getCategories,
   getSubCategories,
-  getFilteredProducts,
   getProducts,
-  dynamicSearchName,
   setFilteredProducts,
 } from "../../../../redux/actions";
-
+import Link from "next/link";
 const Filtros = () => {
   const dispatch = useDispatch();
 
@@ -255,8 +253,11 @@ const Filtros = () => {
         </div>
 
         <button className={styles.deleteFilter} onClick={handleResetClick}>
-          <span className={styles.front}>Reset</span>
+          <span className={styles.front}>Resetear Filtros</span>
         </button>
+        <Link href="/" className={styles.deleteFilter}>
+          Volver a Home
+        </Link>
       </div>
     </div>
   );

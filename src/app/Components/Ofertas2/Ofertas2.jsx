@@ -17,9 +17,8 @@ export default function Ofertas2() {
     <div className={styles.ofertasContainer}>
       <h2 className={styles.ofertasTitle}>Mas Comprados</h2>
       <div className={styles.ofertasGrid}>
-        {allProducts.slice(15, 25).map(({ image, name }) => (
-          <Card key={name} image={image} name={name} />
-        
+        {allProducts.slice(15, 25).map(({ image, name }, i) => (
+          <Card key={i} image={image} name={name} />
         ))}
       </div>
     </div>

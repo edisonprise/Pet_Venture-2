@@ -16,9 +16,9 @@ export const SET_FILTERED_PRODUCTS = "SET_FILTERED_PRODUCTS";
 
 export function getProducts() {
   return async function (dispatch) {
-    const response = (await axios.get("/api/products")).data;
+    // const response = (await axios.get("/api/products")).data;
 
-    // const response = getFakeProducts();
+    const response = getFakeProducts();
     return dispatch({ type: GET_PRODUCTS, payload: response });
   };
 }

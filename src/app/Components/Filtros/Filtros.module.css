@@ -5,8 +5,12 @@
   align-items: center;
   margin-bottom: 20px;
   margin-top: 5px;
-  background-color: rgb(255, 255, 255);
+
   color: #ff0000;
+
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
 }
 
 .selectContainer {
@@ -55,6 +59,8 @@
   font-size: 16px;
   border: none;
   cursor: pointer;
+  text-decoration: none;
+
   /* transition: background-color 0.3s ease-in-out; */
 }
 

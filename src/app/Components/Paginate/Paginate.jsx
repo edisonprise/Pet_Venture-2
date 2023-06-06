@@ -1,23 +1,30 @@
-// import React from "react";
-// //import "./Paginated.css";
+import React from "react";
+import styles from "./Paginate.module.css";
 
-// export default function Paginated({dogsPerPage, allDogs, paginated}){
-//     const pageNumbers=[];
+export default function Paginate({ productsPerPage, allProducts, paginate }) {
+  const pageNumbers = [];
 
-//     for(let i=1; i<=Math.ceil(allDogs/dogsPerPage); i++){
-//         pageNumbers.push(i);
-//     }
+  for (let i = 1; i <= Math.ceil(allProducts / productsPerPage); i++) {
+    pageNumbers.push(i);
+  }
 
-//     return(
-//         <nav>
-//             <ul className="pagination">
-//                 {pageNumbers?.map(number =>(
-//                     <li className="number" key={number}>
-//                         <button onClick={()=> paginated(number)}>{number}</button>
-//                     </li>
-//                 ))}
-                
-//             </ul>
-//         </nav>
-//     )
-// }; 
+  return (
+    <div>
+      {pageNumbers.length <= 1 ? (
+        <></>
+      ) : (
+        <nav className={styles.pagination}>
+          <ul className={styles.page}>
+            {pageNumbers?.map((p) => (
+              <li className={styles.page} key={p}>
+                <button className={styles.pageBtn} onClick={() => paginate(p)}>
+                  {p}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
+    </div>
+  );
+}
