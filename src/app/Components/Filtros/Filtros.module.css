@@ -1,65 +1,120 @@
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-    margin-top: 5px;
-    background-color: rgb(44, 77, 227);
-    color: rgb(255, 255, 255)
-  }
-  
-  .selectContainer {
-    display: flex;
-    flex-direction: column;
-    margin-right: 10px;
-  }
-  
-  .label {
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .select {
-    padding: 5px;
-    border-radius: 5px;
-    border: 1px solid #000000;
-    font-size: 14px;
-    width: 150px;
-  }
-  
-  .option {
-    font-size: 14px;
-  }
-  
-  .deleteFilter {
-    padding: 10px 10px;
-    background-color: #ffffff;
-    color: rgb(0, 0, 0);
-    border-radius: 5px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .deleteFilter:hover {
-    background-color: #384dec;
-  }
-  
-  .deleteFilter:active {
-    top: 2px;
-  }
-  
-  .deleteFilter .shadow {
-    position: absolute;
-    bottom: -5px;
-    left: 5px;
-    width: 100%;
-    height: 50%;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    z-index: -1;
-  }
-  
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 5px;
+
+  color: #ff0000;
+
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+}
+
+.selectContainer {
+  display: flex;
+  flex-direction: row;
+  margin-right: 10px;
+}
+
+.label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.input {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  font-size: 14px;
+  width: 150px;
+}
+
+.searchButton {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  font-size: 14px;
+  width: 150px;
+}
+.select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  font-size: 14px;
+  width: 150px;
+}
+
+.option {
+  font-size: 14px;
+}
+
+.deleteFilter {
+  padding: 10px 10px;
+  background-color: gray;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  /* transition: background-color 0.3s ease-in-out; */
+}
+
+.deleteFilter:hover {
+  background-color: tomato;
+}
+
+.deleteFilter:active {
+  top: 2px;
+}
+
+/* .deleteFilter .shadow {
+  position: absolute;
+  bottom: -5px;
+  left: 5px;
+  width: 100%;
+  height: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  z-index: -1;
+} */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+}
+
+.navbar .logo img {
+  width: 250px;
+  height: 60px;
+}
+
+.navbar .menu {
+  margin-left: 20px;
+}
+
+.navbar .menu ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+.navbar .menu li {
+  margin-right: 10px;
+}
+
+.navbar .menu a {
+  text-decoration: none;
+  color: #333;
+}
+
+.navbar .menu a:hover {
+  color: #ff0000;
+}

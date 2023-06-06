@@ -1,0 +1,63 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: white;
+  height: stretch;
+  width: 200px;
+  margin: 5px;
+  padding: 6px;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.img {
+  width: 100%;
+
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  /* width: 100%; */
+  object-fit: contain;
+  /* margin: 1px; */
+  /* padding: 0px; */
+  /* border: 6px solid rgb(232, 239, 240); */
+}
+
+.contenedorcard {
+  text-align: center;
+}
+
+.namedog {
+  color: rgb(255, 255, 255);
+  margin-bottom: 4px;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: "Arial", sans-serif; /* Cambia la fuente a Arial o a una de tu elección */
+  text-transform: uppercase; /* Convierte el texto a mayúsculas */
+  letter-spacing: 2px; /* Aumenta el espaciado entre las letras */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Agrega una sombra al texto */
+}
+
+.namedescription {
+  display: flex;
+  flex-direction: column;
+
+  text-align: left;
+  /* margin-top: 10px; Ajusta el espaciado superior del texto */
+  padding: 3px;
+}
+
+.container {
+  /* background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.123rf.com%2Fphoto_73998372_huella-de-animales-sin-fisuras-patr%25C3%25B3n-sin-fisuras-patr%25C3%25B3n-se-puede-utilizar-para-fondos-de-escritorio-patro.html&psig=AOvVaw3yG5shlgxj79LipU0PpZk5&ust=1685919485630000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCNCj2dGZqP8CFQAAAAAdAAAAABAQ"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
