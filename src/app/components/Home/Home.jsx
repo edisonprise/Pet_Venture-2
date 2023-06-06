@@ -9,6 +9,8 @@ import Footer from "../Footer/Footer";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../../../redux/actions";
 
+import styles from "./Home.module.css"
+
 import {
   getBrands,
   getCategories,
@@ -21,12 +23,12 @@ export default function Home() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className={styles.container}>
       <Navbar />
       <Slider />
       <Ofertas />
       <Ofertas2 />
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 }

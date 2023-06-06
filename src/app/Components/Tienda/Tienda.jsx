@@ -13,7 +13,7 @@ const Tienda = () => {
   const allProducts = useSelector((state) => state.filteredProducts);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(8);
+  const [itemsPerPage, setItemsPerPage] = useState(15);
 
   const totalPages = Math.ceil(allProducts.length / itemsPerPage);
   const endIndex = currentPage * itemsPerPage;

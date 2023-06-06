@@ -1251,24 +1251,28 @@ export default function (state = initialState, action) {
       return {
         ...state,
         brands: [...action.payload],
+        paginaactual: 1,
       };
 
     case GET_CATEGORIES:
       return {
         ...state,
         categories: [...action.payload],
+        paginaactual: 1,
       };
 
     case GET_SUB_CATEGORIES:
       return {
         ...state,
         subCategories: [...action.payload],
+        paginaactual: 1,
       };
 
     case SET_FILTERED_PRODUCTS:
       return {
         ...state,
         filteredProducts: [...action.payload],
+        paginaactual: 1,
       };
 
     case USERS_ERROR:
