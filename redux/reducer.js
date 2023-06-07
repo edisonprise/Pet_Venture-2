@@ -9,6 +9,8 @@ import {
   // GET_FILTERED_PRODUCTS,
   SET_FILTERED_PRODUCTS,
   GET_PRODUCT_BY_ID,
+  SET_USER_STATE,
+  SET_USER_INFO,
 } from "./actions";
 
 export const initialState = {
@@ -1240,7 +1242,11 @@ export const initialState = {
   subCategories: [],
   brands: [],
   productDetail: [],
+  userState: false,
+  userInfo: [],
 };
+// * Estados del usuario
+//* 1: no legueado, 2:
 
 export default function (state = initialState, action) {
   switch (action.type) {
@@ -1289,6 +1295,16 @@ export default function (state = initialState, action) {
     case USERS_ERROR:
       return {
         error: action.payload,
+      };
+    case SET_USER_STATE:
+      return {
+        ...state,
+        userState: action.payload,
+      };
+    case SET_USER_INFO:
+      return {
+        ...state,
+        userInfo: action.payload,
       };
     default:
       return state;
