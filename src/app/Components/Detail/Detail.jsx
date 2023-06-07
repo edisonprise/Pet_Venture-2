@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
-import { zip } from "lodash-es";
-// // import {detailDog} from "../../redux/actions";
-// // import "./Detail.module.css";
+// import React, { useEffect } from "react";
+// import Link from "next/link";
+// import { useDispatch, useSelector } from "react-redux";
+// import { zip } from "lodash-es";
+// // // import {detailDog} from "../../redux/actions";
+// // // import "./Detail.module.css";
 
-function Detail() {
-  return <div>Detail</div>;
-}
+// function Detail() {
+//   return <div>Detail</div>;
+// }
 
-export default Detail;
+// export default Detail;
 
 // const Detail = (props) => {
 //   console.log(props);

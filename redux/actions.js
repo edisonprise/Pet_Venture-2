@@ -1,3 +1,5 @@
+"use client";
+
 import axios from "axios";
 
 import { getFakeProducts } from "@/app/fakeApi/getFakeProducts";
@@ -11,18 +13,26 @@ export const GET_SUB_CATEGORIES = "GET_SUB_CATEGORY";
 export const GET_BRANDS = "GET_BY_BRAND";
 export const DYNAMIC_NAME_SEARCH = "DYNAMIC_NAME_SEARCH";
 export const SET_FILTERED_PRODUCTS = "SET_FILTERED_PRODUCTS";
+export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
 
 // export const GET_PRODUCTS_BY_NAME = "GET_PRODUCTS_BY_NAME";
 
 export function getProducts() {
   return async function (dispatch) {
-    // const response = (await axios.get("/api/products")).data;
+    const response = (await axios.get("/api/products")).data;
 
-    const response = getFakeProducts();
+    // const response = getFakeProducts();
     return dispatch({ type: GET_PRODUCTS, payload: response });
   };
 }
 
+export function getProcuctById(id) {
+  return async function (dispatch) {
+    const response = (await axios.get(`/api/productsById?id=${id}`)).data;
+
+    return dispatch({ type: GET_PRODUCT_BY_ID, payload: response });
+  };
+}
 // trae las categorias para los filtros
 
 export function getBrands(filteredBrands) {

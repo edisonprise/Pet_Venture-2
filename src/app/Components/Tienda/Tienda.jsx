@@ -27,8 +27,8 @@ const Tienda = () => {
 
   useEffect(() => {
     dispatch(getProducts());
-  }, [dispatch]);
-  console.log(itemsToShow);
+  }, []);
+
   return (
     <div className={styles.container}>
       <Filtros />

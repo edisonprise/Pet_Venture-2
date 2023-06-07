@@ -23,7 +23,7 @@ export default function Products(props) {
     <div className={styles.productos}>
       {props.itemsToShow.map((p, i) => (
         <Card
-          key={p.i}
+          key={i}
           image={p.image}
           name={p.name}
           category={p.category}

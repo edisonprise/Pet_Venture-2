@@ -1,3 +1,5 @@
+"use client";
+
 import {
   GET_BRANDS,
   GET_CATEGORIES,
@@ -6,6 +8,7 @@ import {
   USERS_ERROR,
   // GET_FILTERED_PRODUCTS,
   SET_FILTERED_PRODUCTS,
+  GET_PRODUCT_BY_ID,
 } from "./actions";
 
 export const initialState = {
@@ -1236,6 +1239,7 @@ export const initialState = {
   categories: [],
   subCategories: [],
   brands: [],
+  productDetail: [],
 };
 
 export default function (state = initialState, action) {
@@ -1245,6 +1249,13 @@ export default function (state = initialState, action) {
         ...state,
         products: action.payload,
         filteredProducts: action.payload,
+      };
+
+    case GET_PRODUCT_BY_ID:
+      return {
+        ...state,
+        productDetail: action.payload,
+        paginaactual: 1,
       };
 
     case GET_BRANDS:

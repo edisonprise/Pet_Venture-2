@@ -9,7 +9,7 @@ import Footer from "../Footer/Footer";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../../../redux/actions";
 
-import styles from "./Home.module.css"
+import styles from "./Home.module.css";
 
 import {
   getBrands,
@@ -20,7 +20,7 @@ export default function Home() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className={styles.container}>
