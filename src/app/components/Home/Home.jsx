@@ -6,17 +6,13 @@ import Ofertas from "../Ofertas/Ofertas";
 import Ofertas2 from "../Ofertas2/Ofertas2";
 import Footer from "../Footer/Footer";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../../redux/actions";
 
 import styles from "./Home.module.css";
 
-import {
-  getBrands,
-  getCategories,
-  getSubCategories,
-} from "../../../../redux/actions";
 export default function Home() {
+  const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
@@ -26,8 +22,8 @@ export default function Home() {
     <div className={styles.container}>
       <Navbar />
       <Slider />
-      <Ofertas />
-      <Ofertas2 />
+      <Ofertas products={products} />
+      <Ofertas2 products={products} />
       <Footer />
     </div>
   );
