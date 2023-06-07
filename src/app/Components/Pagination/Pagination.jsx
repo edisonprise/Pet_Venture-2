@@ -17,7 +17,7 @@ function Pagination({ currentPage, totalPages, setCurrentPage }) {
     setCurrentPage(currentPage + 1);
     if (currentPage > totalPages) setCurrentPage(currentPage);
   };
-  console.log("pageNumbers", pageNumbers);
+
   return (
     <div className={styles.center}>
       <div className={styles.container}>

@@ -6,10 +6,8 @@ import Card from "../Card/Card";
 import styles from "./Products.module.css";
 
 export default function Products(props) {
-  const allProducts = useSelector((state) => state.products);
-
   //& Manejo de error por falta de resultados
-  if (allProducts.length === 0)
+  if (props.itemsToShow.length === 0)
     return (
       <div className={styles.container}>
         {" "}

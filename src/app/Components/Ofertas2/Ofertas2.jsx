@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { getProducts } from "../../../../redux/actions";
 import styles from "./ofertas2.module.css";
 
@@ -10,8 +10,6 @@ export default function Ofertas2(props) {
   useEffect(() => {
     dispatch(getProducts());
   }, [dispatch]);
-
-  const allProducts = useSelector((state) => state.products);
 
   return (
     <div className={styles.ofertasContainer}>

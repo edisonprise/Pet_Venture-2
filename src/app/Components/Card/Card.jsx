@@ -3,7 +3,6 @@ import styles from "./card.module.css";
 import Link from "next/link";
 
 function Card(props) {
-  // console.log(props.id);
   return (
     <div className={styles.container}>
       <div className={styles.card}>

@@ -68,41 +68,8 @@ export function getFilteredProducts(filters) {
     result = (b) => b.brand.includes(filters.brand);
   }
 
-  // if (filters.category !== "none") {
-  //   result = (c) => c.category.includes(filters.category);
-  // }
-
-  // if (filters.subCategory !== "none") {
-  //   result = response.filter((b) =>
-  //     b.subCategory.includes(filters.subCategory)
-  //   );
-  // }
-
-  // if (filters.price !== "none") {
-  //   if (filters.price === "low") {
-  //     result = response.sort((a, b) => {
-  //     a.price -
-  //         b.price;
-  //     });
-  //   } else if (filters.price === "high") {
-  //     result = response.sort(
-  //       (a, b) =>
-  //        b.price -
-  //      a.price
-  //     );
-  //   }
-  // }
-
-  console.log("actions", filters);
-  console.log("action products", result);
-
   return {
     type: GET_FILTERED_PRODUCTS,
     payload: result,
   };
 }
-
-//& category - filter category
-//& subcategory - filter subcategory
-//& price - sort price
-//& name - filter name

@@ -1,12 +1,10 @@
 "use client";
 import axios from "axios";
-import React, { useEffect } from "react";
-
+import React from "react";
+import Link from "next/link";
 import styles from "./detail.module.css";
 
 function productDetail({ product }) {
-  console.log("prod", product);
-
   return (
     <div>
       <div className={styles.container}>
@@ -15,17 +13,14 @@ function productDetail({ product }) {
           <div className={styles.propertyContainer}>
             <h4>Name</h4> <div>{product[0].name} </div>
           </div>
-
           <div className={styles.propertyContainer}>
             <h4>Brand</h4>
             <span> {product[0].brand}</span>
           </div>
-
           <div className={styles.propertyContainer}>
             <h4>Category</h4>
             <span> {product[0].category}</span>
           </div>
-
           <div className={styles.propertyContainer}>
             <h4>Descripcion</h4>
             <p>
@@ -45,11 +40,13 @@ function productDetail({ product }) {
               voluptas nulla pariatur?
             </p>
           </div>
-
           <div className={styles.propertyContainer}>
             <h4>Price</h4>
             <span> {product[0].price} </span>
-          </div>
+          </div>{" "}
+          <Link href="/" className={styles.deleteFilter}>
+            Volver a Home
+          </Link>
         </div>{" "}
       </div>
     </div>

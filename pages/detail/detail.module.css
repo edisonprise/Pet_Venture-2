@@ -106,3 +106,18 @@
   font-size: xx-large;
   margin-bottom: 10px;
 }
+
+.deleteFilter {
+  width: 80px;
+  height: 40px;
+  padding: 10px 10px;
+  background-color: gray;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  /* transition: background-color 0.3s ease-in-out; */
+}
