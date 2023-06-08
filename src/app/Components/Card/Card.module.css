@@ -59,14 +59,20 @@
 }
 
 .detail {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
+  margin-left: 10px;
+  text-decoration: none;
 }
+
 
 .productInfo {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   margin-top: -20px;
+}
+
+.carrito{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }

@@ -9,6 +9,7 @@ import {
   setFilteredProducts,
 } from "../../../../redux/actions";
 import Link from "next/link";
+
 const Filtros = () => {
   const dispatch = useDispatch();
 
@@ -35,14 +36,12 @@ const Filtros = () => {
     const filterBrands = () => {
       const brandsArr = allProducts.map((b) => b.brand);
       const uniqueBrands = [...new Set(brandsArr)];
-      // console.log("uniqueBrands", uniqueBrands);
       return uniqueBrands;
     };
 
     const filterCategory = () => {
       const categoryArr = allProducts.map((b) => b.category);
       const uniqueCategory = [...new Set(categoryArr)];
-
       return uniqueCategory;
     };
 
@@ -67,7 +66,7 @@ const Filtros = () => {
           j++;
         }
       }
-      // console.log("jota", j);
+
       if (filterPanel.name !== "") {
         productsCopy = productsCopy.filter((p) =>
           p.name?.toLowerCase().includes(filterPanel.name.toLowerCase())
@@ -131,6 +130,12 @@ const Filtros = () => {
     setCategorySelect("");
     setSubCategorySelect("");
   };
+
+  const handleClick = () => {
+    setShowSidebar(true);
+  };
+
+  const [showSidebar, setShowSidebar] = useState(false);
 
   return (
     <div>
@@ -234,6 +239,12 @@ const Filtros = () => {
         <Link href="/" className={styles.deleteFilter}>
           Volver a Home
         </Link>
+      </div>
+      <div>
+        <Link href="/carrito">
+          <img src="img/carrito.png" className={styles.buttonimg} />
+        </Link>
+        
       </div>
     </div>
   );
