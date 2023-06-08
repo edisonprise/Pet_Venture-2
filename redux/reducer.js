@@ -1242,11 +1242,11 @@ export const initialState = {
   subCategories: [],
   brands: [],
   productDetail: [],
-  userState: false,
+  userState: 1,
   userInfo: [],
 };
 // * Estados del usuario
-//* 1: no legueado, 2:
+//* 1: No legueado, 2: autenticado, 3: Registrado
 
 export default function (state = initialState, action) {
   switch (action.type) {
