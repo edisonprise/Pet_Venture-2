@@ -49,6 +49,7 @@ function productDetail({ product }) {
           </Link>
         </div>{" "}
       </div>
+      <button href="/carrito"></button>
     </div>
   );
 }
