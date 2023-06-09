@@ -1,5 +1,5 @@
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import { auth } from "../../Firebase/firebaseConfig";
+import { auth, getUserInfo, registerNewUser, userExist } from "../../Firebase/firebaseConfig";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUserInfo, setUserState } from "../../../../redux/actions";
@@ -12,17 +12,39 @@ export default function Login() {
 
   useEffect(() => {
     onAuthStateChanged(auth, handlerUserStateChanged)
-    if (userState) {
+    if (userState === 2) {
       router.push("/createUserName")
+    }
+    if (userState === 3) {
+      router.push("/")
     }
   }, [userState])
 
-  const handlerUserStateChanged = (user) => {
+  const handlerUserStateChanged = async (user) => {
     if (user) {
-      dispatch(setUserState(true))
-      dispatch(setUserInfo(user))
+      const isRegistered = userExist(user.uid)
+      if (isRegistered) {
+        const userInfo = await getUserInfo(user.uid)
+        if (userInfo?.processCompleted) {
+          dispatch(setUserState(3))
+          dispatch(setUserInfo(userInfo))
+
+        }
+        else {
+          await registerNewUser({
+            uid: user.uid,
+            displayName: user.displayName,
+            profilePicture: "",
+            username: "",
+            processCompleted: false
+          })
+          dispatch(setUserState(2))
+          dispatch(setUserInfo(userInfo))
+        }
+      }
     } else {
-      console.log("no hay nadie")
+      dispatch(setUserState(1))
+      // dispatch(setUserInfo(userInfo))
     }
   }
   const handlerOnClick = async () => {
@@ -39,12 +61,27 @@ export default function Login() {
     }
   };
 
+
   return (
     <div>
-
-
       <button onClick={handlerOnClick}> Login with Google </button>
-
     </div>
-  );
+  )
+
+  // if (userState === 2) {
+  //   return (
+  //     <div>
+  //       Estas autenticado...
+  //     </div>
+  //   )
+  // }
+  // if (userState === 3) {
+  //   return (
+  //     <div>
+  //       Estas Registrado...
+  //     </div>
+  //   )
+  // }
+
+
 }

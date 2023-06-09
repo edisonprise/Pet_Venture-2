@@ -1,6 +1,16 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { addDoc, collection, getDocs, getFirestore } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 
 const firebaseConfig = {
    apiKey: "AIzaSyAdjrZCa-2WG82dmHU1aII0g6cRdKYzoQg",
@@ -27,3 +37,44 @@ export const addProduct = async (product) => {
   const docRef = await addDoc(collection(db, "productos"), product);
   return docRef;
 };
+
+export async function userExist(uid) {
+  const docRef = doc(db, "users", uid);
+  const res = await getDoc(docRef);
+  console.log(res);
+  return res.exists();
+}
+
+export async function existsUserName(username) {
+  const users = [];
+  const docsRef = collection(db, "users");
+  const q = query(docsRef, where("username", "==", username));
+  const querySnapshot = await getDocs(q);
+
+  querySnapshot.forEach((doc) => {
+    users.push(doc.data());
+  });
+  return users.length > 0 ? users[0].uid : null;
+}
+
+export async function registerNewUser(user) {
+  try {
+    const collectionRef = collection(db, "users");
+    const docRef = doc(collectionRef, user.uid);
+    await setDoc(docRef, user);
+  } catch (error) {}
+}
+
+export async function updateUser(user) {
+  try {
+    const collectionRef = collection(db, "users");
+    const docRef = doc(collectionRef, user.uid);
+    await setDoc(docRef, user);
+  } catch (error) {}
+}
+
+export async function getUserInfo(uid) {
+  const docRef = doc(db, "users", uid);
+  const document = await getDoc(docRef);
+  return document.data();
+}
