@@ -10,6 +10,7 @@ function Card(props) {
  
   const handleAddToCart = (productId) => {
     dispatch(addCarrito(productId));
+    alert('se añadio producto')
   };
   
   return (

@@ -38,7 +38,7 @@ export function addCarrito(id) {
   return async function (dispatch) {
     const response = (await axios.get(`/api/productsById?id=${id}`)).data
     console.log(response);
-    return dispatch({ type: ADD_CARRITO, payload: response });
+    return dispatch({ type: ADD_CARRITO, payload: response[0] });
   };
 }
 
