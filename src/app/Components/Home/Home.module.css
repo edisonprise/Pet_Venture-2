@@ -1,0 +1,6 @@
+.container{
+    background-image: url("https://img.freepik.com/vector-premium/fondo-formas-abstractas-planas-dibujadas-mano_23-2149082885.jpg?w=2000");
+    background-size: cover; /* Ajusta el tamaño de la imagen al contenedor */
+    background-repeat: no-repeat;
+    background-position: center center;
+}

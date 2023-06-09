@@ -11,7 +11,7 @@ const Navbar = () => {
       </div>
 
       <div className={styles.menu}>
-        <ul className={styles.menuList}>
+        <ul className={styles.menu.li}>
           <li>
             <Link href="/nosotros">Nosotros</Link>
           </li>
@@ -21,6 +21,9 @@ const Navbar = () => {
           </li>
           <li>
             <Link href="/formulario">Crear Producto</Link>
+          </li>
+          <li>
+            <Link href="/login">Login</Link>
           </li>
         </ul>
       </div>

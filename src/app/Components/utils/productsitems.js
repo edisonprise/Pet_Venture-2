@@ -1,47 +1,28 @@
-"use client";
-
-import {
-  GET_BRANDS,
-  GET_CATEGORIES,
-  GET_PRODUCTS,
-  GET_SUB_CATEGORIES,
-  USERS_ERROR,
-  // GET_FILTERED_PRODUCTS,
-  SET_FILTERED_PRODUCTS,
-  GET_PRODUCT_BY_ID,
-  SET_USER_STATE,
-  SET_USER_INFO,
-  ADD_CARRITO,
-  DELETE_CARRITO
-
-} from "./actions";
-
-export const initialState = {
-  // products: [
-  //   {
-  //     id: "162rxEEChj4y0fIbxgRV",
-  //     brand_url: "https://www.puppis.com.ar/millex",
-  //     name: "Unico",
-  //     brand: "Millex",
-  //     category: "aves",
-  //     image:
-  //       "https://puppis.vteximg.com.br/arquivos/ids/174149-150-150/238114.jpg?v=637434938615030000",
-  //     subCategory: "Jaulas y Nidos",
-  //     image_url: "https://www.puppis.com.ar/bebedero-millex-para-jaula/p",
-  //     price: 350,
-  //   },
-  //   {
-  //     id: "1Hk7fsv9MMGtIpLbChGn",
-  //     category: "perros",
-  //     price: 2230,
-  //     brand_url: "https://www.puppis.com.ar/kika-dog",
-  //     image_url: "https://www.puppis.com.ar/polera-kika-sorf-rojo/p",
-  //     brand: "Kika Dog",
-  //     name: "Polera Kika Sorf Rojo",
-  //     image:
-  //       "https://puppis.vteximg.com.br/arquivos/ids/176526-150-150/216035.jpg?v=637546240223400000",
-  //     subCategory: "Ropa",
-  //   },
+export const DATA = [
+     {
+       id: "162rxEEChj4y0fIbxgRV",
+       brand_url: "https://www.puppis.com.ar/millex",
+       name: "Unico",
+       brand: "Millex",
+       category: "aves",
+       image:
+         "https://puppis.vteximg.com.br/arquivos/ids/174149-150-150/238114.jpg?v=637434938615030000",
+       subCategory: "Jaulas y Nidos",
+       image_url: "https://www.puppis.com.ar/bebedero-millex-para-jaula/p",
+       price: 350,
+     },
+   {
+       id: "1Hk7fsv9MMGtIpLbChGn",
+       category: "perros",
+       price: 2230,
+       brand_url: "https://www.puppis.com.ar/kika-dog",
+      image_url: "https://www.puppis.com.ar/polera-kika-sorf-rojo/p",
+       brand: "Kika Dog",
+       name: "Polera Kika Sorf Rojo",
+      image:
+         "https://puppis.vteximg.com.br/arquivos/ids/176526-150-150/216035.jpg?v=637546240223400000",
+       subCategory: "Ropa",
+     },
   //   {
   //     id: "1Mmh47ICCNjUCKPhS0gj",
   //     name: "Comedero Brava Transparente Para Aves",
@@ -1237,90 +1218,4 @@ export const initialState = {
   //     image_url:
   //       "https://www.puppis.com.ar/collar-pawise-para-gatos-con-mono-azul/p",
   //   },
-  // ],
-  filteredProducts: [],
-  products: [],
-  paginaactual: 1,
-  categories: [],
-  subCategories: [],
-  brands: [],
-  productDetail: [],
-  carrito: []
-};
-// * Estados del usuario
-//* 1: no legueado, 2:
-
-export default function (state = initialState, action) {
-  switch (action.type) {
-    case GET_PRODUCTS:
-      return {
-        ...state,
-        products: action.payload,
-        filteredProducts: action.payload,
-      };
-
-    case GET_PRODUCT_BY_ID:
-      return {
-        ...state,
-        productDetail: action.payload,
-        paginaactual: 1,
-      };
-
-    case GET_BRANDS:
-      return {
-        ...state,
-        brands: [...action.payload],
-        paginaactual: 1,
-      };
-
-    case GET_CATEGORIES:
-      return {
-        ...state,
-        categories: [...action.payload],
-        paginaactual: 1,
-      };
-
-    case GET_SUB_CATEGORIES:
-      return {
-        ...state,
-        subCategories: [...action.payload],
-        paginaactual: 1,
-      };
-
-    case SET_FILTERED_PRODUCTS:
-      return {
-        ...state,
-        filteredProducts: [...action.payload],
-        paginaactual: 1,
-      };
-
-    case  ADD_CARRITO: 
-    return {
-      ...state,
-      carrito: [...state.carrito,action.payload]
-    }
-
-    case DELETE_CARRITO:
-      return {
-        ...state,
-        carrito : state.carrito.filter(event => event.id !== action.payload)
-      }
-
-    case USERS_ERROR:
-      return {
-        error: action.payload,
-      };
-    case SET_USER_STATE:
-      return {
-        ...state,
-        userState: action.payload,
-      };
-    case SET_USER_INFO:
-      return {
-        ...state,
-        userInfo: action.payload,
-      };
-    default:
-      return state;
-  }
-}
+]

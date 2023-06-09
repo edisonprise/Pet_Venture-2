@@ -1,20 +1,42 @@
-import React from 'react';
-import styles from './Card.module.css';
+import React from "react";
+import styles from "./card.module.css";
+import Link from "next/link";
+import { addCarrito, deleteCarrito } from "../../../../redux/actions"
+import { useDispatch } from "react-redux";
 
-function Card({ categoria, id, image, price, name }) {
+function Card(props) {
+
+  const dispatch = useDispatch()
+ 
+  const handleAddToCart = (productId) => {
+    dispatch(addCarrito(productId));
+  };
+  
   return (
     <div className={styles.container}>
-        <img className={styles.img} src={image} alt="Not found" />
+      <div className={styles.carrito}>
+      <button onClick={() => handleAddToCart(props.id)}>
+        {console.log(props.id)}
+              <p className={styles.button}>Añadir al Carrito</p>
+          </button>
+      </div>
       <div className={styles.card}>
-
-        <div className={styles.contenedorcard}>
-          <h3 className={styles.namedog}>{name}</h3>
-        </div>
-
-        <div className={styles.namedescription}>
-          <h2>{price}</h2>
-          <h5>{id}</h5>
-          <h3>{categoria}</h3>
+        <img className={styles.img} src={props.image} alt="Not found" />
+        <div className={styles.productInfo}>
+          <div>
+            <h5 className={styles.title}>{props.name}</h5>
+          </div>
+          <div>
+            <h5 className={styles.title}>Marca: {props.brand}</h5>
+          </div>
+          <div>
+            <h5 className={styles.title}>Precio: $ {props.price}</h5>
+          </div>
+          <div className={styles.buttonContainer}>
+            <Link href={`/detail/${props.id}`}>
+              <p className={styles.button}>Detalle</p>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
