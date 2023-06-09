@@ -14,8 +14,13 @@ export const GET_BRANDS = "GET_BY_BRAND";
 export const DYNAMIC_NAME_SEARCH = "DYNAMIC_NAME_SEARCH";
 export const SET_FILTERED_PRODUCTS = "SET_FILTERED_PRODUCTS";
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
+
 export const ADD_CARRITO = "ADD_CARRITO";
 export const DELETE_CARRITO = "DELETE_CARRITO"; 
+
+export const SET_USER_STATE = "SET_USER_STATE";
+export const SET_USER_INFO = "SET_USER_INFO";
+
 
 // export const GET_PRODUCTS_BY_NAME = "GET_PRODUCTS_BY_NAME";
 
@@ -91,4 +96,17 @@ export function getFilteredProducts(filters) {
   };
 
 
+}
+
+//& category - filter category
+//& subcategory - filter subcategory
+//& price - sort price
+//& name - filter name
+// * Actions de usuario
+export function setUserState(state) {
+  return { type: SET_USER_STATE, payload: state };
+}
+
+export function setUserInfo(info) {
+  return { type: SET_USER_INFO, payload: info };
 }

@@ -22,6 +22,9 @@ const Navbar = () => {
           <li>
             <Link href="/formulario">Crear Producto</Link>
           </li>
+          <li>
+            <Link href="/login">Login</Link>
+          </li>
         </ul>
       </div>
     </div>
