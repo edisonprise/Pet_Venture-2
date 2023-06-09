@@ -118,3 +118,8 @@
 .navbar .menu a:hover {
   color: #ff0000;
 }
+
+.buttonimg {
+  width: 50px;
+  height: 50px;
+}
