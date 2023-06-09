@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { setUserState } from "../../../../redux/actions"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
+import Swal from "sweetalert2";
 
 const validate = async values => {
     const exists = await existsUserName(values.userName)
@@ -39,6 +40,12 @@ export default function CreateUserName() {
             tmp.processCompleted = true
             await updateUser(tmp)
             dispatch(setUserState(3))
+            Swal.fire({
+                title: 'Felicidades!',
+                text: 'Te has registrado con exito',
+                icon: 'success',
+                confirmButtonText: 'Continuar'
+            })
         }
     })
     return (

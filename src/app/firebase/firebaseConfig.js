@@ -11,6 +11,7 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
+import database from "../utils/db.json";
 
 const firebaseConfig = {
    apiKey: "AIzaSyAdjrZCa-2WG82dmHU1aII0g6cRdKYzoQg",
@@ -77,4 +78,13 @@ export async function getUserInfo(uid) {
   const docRef = doc(db, "users", uid);
   const document = await getDoc(docRef);
   return document.data();
+}
+export async function logout() {
+  await auth.signOut();
+}
+export default async function addDocuments() {
+  for (const producto of database) {
+    const ref = await addDoc(collection(db, "productos"), producto);
+    console.log(ref);
+  }
 }

@@ -21,6 +21,7 @@ export default function Login() {
   }, [userState])
 
   const handlerUserStateChanged = async (user) => {
+    console.log(user)
     if (user) {
       const isRegistered = userExist(user.uid)
       if (isRegistered) {
@@ -34,7 +35,7 @@ export default function Login() {
           await registerNewUser({
             uid: user.uid,
             displayName: user.displayName,
-            profilePicture: "",
+            profilePicture: user.photoURL,
             username: "",
             processCompleted: false
           })
@@ -44,7 +45,6 @@ export default function Login() {
       }
     } else {
       dispatch(setUserState(1))
-      // dispatch(setUserInfo(userInfo))
     }
   }
   const handlerOnClick = async () => {
