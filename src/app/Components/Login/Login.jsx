@@ -14,7 +14,8 @@ export default function Login() {
     onAuthStateChanged(auth, handlerUserStateChanged)
     if (userState === 2) {
       router.push("/createUserName")
-    } else if (userState === 3) {
+    }
+    if (userState === 3) {
       router.push("/")
     }
   }, [userState])
@@ -24,25 +25,26 @@ export default function Login() {
       const isRegistered = userExist(user.uid)
       if (isRegistered) {
         const userInfo = await getUserInfo(user.uid)
-        if (userInfo.processCompleted) {
+        if (userInfo?.processCompleted) {
           dispatch(setUserState(3))
           dispatch(setUserInfo(userInfo))
 
-        } else {
-          dispatch(setUserState(3))
+        }
+        else {
+          await registerNewUser({
+            uid: user.uid,
+            displayName: user.displayName,
+            profilePicture: "",
+            username: "",
+            processCompleted: false
+          })
+          dispatch(setUserState(2))
           dispatch(setUserInfo(userInfo))
         }
       }
     } else {
-      await registerNewUser({
-        uid: user.uid,
-        displayName: user.displayName,
-        profilePicture: "",
-        username: "",
-        processCompleted: false
-      })
-      dispatch(setUserState(2))
-      dispatch(setUserInfo(user))
+      dispatch(setUserState(1))
+      // dispatch(setUserInfo(userInfo))
     }
   }
   const handlerOnClick = async () => {

@@ -7,7 +7,7 @@ import { useRouter } from "next/router"
 import { useEffect } from "react"
 
 const validate = async values => {
-    const exists = await existsUserName(values)
+    const exists = await existsUserName(values.userName)
     const errors = {}
     if (!values.userName) {
         errors.userName = "Requerido"
@@ -43,7 +43,7 @@ export default function CreateUserName() {
     })
     return (
         <form onSubmit={formik.handleSubmit}>
-            <div>{`bienvenido ${displayName}, crea tu nombre de usuario`}</div>
+            <div>{`bienvenido ${displayName ? displayName : null}, crea tu nombre de usuario`}</div>
             <label htmlFor="userName">Nombre de usuario: </label>
             <input
                 type="text"
