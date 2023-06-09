@@ -7,15 +7,16 @@ import { useDispatch } from "react-redux";
 function Card(props) {
 
   const dispatch = useDispatch()
-
-  const handlerClick = (id) => {
-    dispatch(addCarrito(id));
+ 
+  const handleAddToCart = (productId) => {
+    dispatch(addCarrito(productId));
   };
   
   return (
     <div className={styles.container}>
       <div className={styles.carrito}>
-         <button onClick={handlerClick(props.id)}>
+      <button onClick={() => handleAddToCart(props.id)}>
+        {console.log(props.id)}
               <p className={styles.button}>Añadir al Carrito</p>
           </button>
       </div>

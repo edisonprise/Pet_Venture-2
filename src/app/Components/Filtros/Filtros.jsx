@@ -32,7 +32,6 @@ const Filtros = () => {
   });
 
   useEffect(() => {
-    dispatch(getProducts());
     const filterBrands = () => {
       const brandsArr = allProducts.map((b) => b.brand);
       const uniqueBrands = [...new Set(brandsArr)];
