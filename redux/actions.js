@@ -24,10 +24,9 @@ export const SET_USER_INFO = "SET_USER_INFO";
 // export const GET_PRODUCTS_BY_NAME = "GET_PRODUCTS_BY_NAME";
 
 export function getProducts() {
-  return async function (dispatch) {
-    // const response = (await axios.get("/api/products")).data;
-    const response = getFakeProducts();
-
+  return async function (dispatch) 
+    const response = (await axios.get("/api/products")).data;
+     //const response = getFakeProducts();
     return dispatch({ type: GET_PRODUCTS, payload: response });
   };
 }
@@ -35,7 +34,8 @@ export function getProducts() {
 // Carrito
 export function addCarrito(id) {
   return async function (dispatch) {
-    const response = (await axios.get(`/api/productsById?id=${id}`)).data;
+    const response = (await axios.get(`/api/productsById?id=${id}`)).data
+    console.log(response);
     return dispatch({ type: ADD_CARRITO, payload: response });
   };
 }
@@ -48,6 +48,8 @@ export function deleteCarrito(id) {
   };
 }
 
+
+
 export function getProcuctById(id) {
   return async function (dispatch) {
     const response = (await axios.get(`/api/productsById?id=${id}`)).data;
@@ -56,7 +58,7 @@ export function getProcuctById(id) {
   };
 }
 // trae las categorias para los filtros
-
+//ojo muchas peticiones 
 export function getBrands(filteredBrands) {
   console.log(filteredBrands);
 

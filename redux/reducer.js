@@ -11,6 +11,9 @@ import {
   GET_PRODUCT_BY_ID,
   SET_USER_STATE,
   SET_USER_INFO,
+  ADD_CARRITO,
+  DELETE_CARRITO
+
 } from "./actions";
 
 export const initialState = {
@@ -1292,13 +1295,14 @@ export default function (state = initialState, action) {
         filteredProducts: [...action.payload],
         paginaactual: 1,
       };
-    case  "ADD_CARRITO": 
+
+    case  ADD_CARRITO: 
     return {
       ...state,
-      carrito: [...action.payload]
+      carrito: [...state.carrito,action.payload]
     }
 
-    case "DELETE_CARRITO":
+    case DELETE_CARRITO:
       return {
         ...state,
         carrito : state.carrito.filter(event => event.id !== action.payload)
