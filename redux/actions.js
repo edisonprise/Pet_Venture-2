@@ -20,6 +20,7 @@ export const DELETE_CARRITO = "DELETE_CARRITO";
 
 export const SET_USER_STATE = "SET_USER_STATE";
 export const SET_USER_INFO = "SET_USER_INFO";
+export const SET_CARRITO= 'SET_CARRITO'
 
 // export const GET_PRODUCTS_BY_NAME = "GET_PRODUCTS_BY_NAME";
 
@@ -39,14 +40,18 @@ export function getProducts() {
 
 // Carrito
 export function addCarrito(id) {
-  return async function (dispatch) {
-    const response = (await axios.get(`/api/productsById?id=${id}`)).data
-    console.log(response);
+  return async function (dispatch, getState) {
+    const response = await axios.get(`/api/productsById?id=${id}`);
+    const producto = response.data[0];
+    dispatch({ type: ADD_CARRITO, payload: producto});
 
-    return dispatch({ type: ADD_CARRITO, payload: response[0] });
+    const { carrito } = getState();
+    localStorage.setItem('cart', JSON.stringify(carrito));
 
+    return producto;
   };
 }
+
 
 // Borra productos del carrito
 export function deleteCarrito(id) {

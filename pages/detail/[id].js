@@ -3,10 +3,12 @@ import axios from "axios";
 import React from "react";
 import Link from "next/link";
 import styles from "./detail.module.css";
+ 
 
 function productDetail({ product }) {
   return (
     <div>
+
       <div className={styles.container}>
         <img className={styles.img} src={product[0].image} alt="Not found" />
         <div className={styles.infoContainer}>
@@ -46,10 +48,16 @@ function productDetail({ product }) {
           </div>{" "}
           <Link href="/" className={styles.deleteFilter}>
             Volver a Home
+          </Link> 
+          <Link href="/tienda" className={styles.deleteFilter}>
+            Volver a la tienda
           </Link>
         </div>{" "}
       </div>
-      <button href="/carrito"></button>
+      <div>
+        
+        <p></p>
+      </div>
     </div>
   );
 }
