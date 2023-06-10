@@ -17,7 +17,7 @@ function Card(props) {
     <div className={styles.container}>
       <div className={styles.carrito}>
       <button onClick={() => handleAddToCart(props.id)}>
-        {console.log(props.id)}
+        {/* {console.log(props.id)} */}
               <p className={styles.button}>Añadir al Carrito</p>
           </button>
       </div>

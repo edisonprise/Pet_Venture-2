@@ -243,7 +243,7 @@ const Filtros = () => {
         <Link href="/carrito">
           <img src="img/carrito.png" className={styles.buttonimg} />
         </Link>
-        
+        <p></p>
       </div>
     </div>
   );

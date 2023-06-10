@@ -27,7 +27,12 @@ export function getProducts() {
   return async function (dispatch) {
     const response = (await axios.get("/api/products")).data;
 
+
      //const response = getFakeProducts();
+
+    
+   
+
     return dispatch({ type: GET_PRODUCTS, payload: response });
   };
 }
@@ -37,7 +42,9 @@ export function addCarrito(id) {
   return async function (dispatch) {
     const response = (await axios.get(`/api/productsById?id=${id}`)).data
     console.log(response);
+
     return dispatch({ type: ADD_CARRITO, payload: response[0] });
+
   };
 }
 
@@ -47,9 +54,7 @@ export function deleteCarrito(id) {
     type: DELETE_CARRITO,
     payload: id,
   };
-}
-
-
+};
 
 export function getProcuctById(id) {
   return async function (dispatch) {

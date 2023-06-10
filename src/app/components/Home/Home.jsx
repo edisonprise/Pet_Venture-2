@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer";
 
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../../redux/actions";
-import addDocuments from "@/app/Firebase/firebaseConfig";
+// import addDocuments from "@/app/Firebase/firebaseConfig";
 
 import styles from "./Home.module.css";
 

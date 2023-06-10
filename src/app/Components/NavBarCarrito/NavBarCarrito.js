@@ -1,28 +1,60 @@
 import React from "react";
-import { useSelector } from "react-redux";
 
-export default function NavBarCarrito() {
+import { useSelector, useDispatch } from "react-redux";
+import { deleteCarrito } from "../../../../redux/actions";
+import styles from "./NavBarCarrito.module.css";
+import Link from "next/link";
+
+export default function NavBarCarrito(props) {
   const carrito = useSelector((state) => state.carrito);
- console.log(carrito)
+  const dispatch = useDispatch();
+
+  const handlerDelete = (id) => {
+    dispatch(deleteCarrito(id));
+    alert("Producto borrado");
+  };
+
+  let totalPrice = 0;
+
   return (
-    <div >
-      {carrito.map((e) => (
-        <div key={e?.id} >
-          
-          <div>Name: {e?.name}</div>
-          <div>
-            Category: {e?.category}
-            <br />
-            SubCategory: {e?.subCategory}
-            <br />
-            Brand: {e?.brand}
-            <br />
-            Precio: {e?.price}
-            <br />
-            {e?.image && <img src={e?.image} alt="Not found" />}
+    <div>
+      <div className={styles.backtotienda}>
+        <Link href="/tienda">
+          <p className={styles.deleteFilter}>Volver a la tienda</p>
+        </Link>
+      </div>
+
+      {carrito.map((e) => {
+        return (
+          <div className={styles.cartCard} key={e?.id}>
+            <div className={styles.cartCardInfo}>
+              <div>Name: {e?.name}</div>
+              <div>
+                Categoria: {e?.category}
+                <br />
+                SubCategoria: {e?.subCategory}
+                <br />
+                Marca: {e?.brand}
+                <br />
+                Precio: {e?.price}
+              </div>
+              {e?.image && (
+                <img className={styles.cartCardImage} src={e?.image} alt="Not found" />
+              )}
+            </div>
+            <button className={styles.cartCardButton} onClick={() => handlerDelete(e?.id)}>
+              <p>Borrar del Carrito</p>
+            </button>
           </div>
-        </div>
-      ))}
+        );
+      })}
+
+      {carrito.forEach((e) => {
+        totalPrice  +=  e?.price
+        // console.log(totalPrice)
+      })}
+      <div className={styles.precios}>Precio Total: {totalPrice}</div>
+
     </div>
   );
 }

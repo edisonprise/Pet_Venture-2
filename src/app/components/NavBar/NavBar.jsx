@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import PetVenture from "../../../../public/img/PetVenture.svg";
 import styles from "./Navbar.module.css";
-import { logout } from "@/app/Firebase/firebaseConfig";
+// import { logout } from "@/app/Firebase/firebaseConfig";
 import { useDispatch } from "react-redux";
 import { setUserState } from "../../../../redux/actions";
 import { useSelector } from "react-redux";
@@ -38,7 +38,7 @@ const Navbar = () => {
             {userState === 3 ? <Link href="/" onClick={handlerLogout}>Logout</Link> : <Link href="/login">Login</Link>}
           </li>
           <li>
-            {userState === 3 ? <img src={userInfo.profilePicture} width="35px" height="35px" /> : null}
+            {userState === 3 ? <img src={userInfo.profilePicture} width="50px" height="50px" /> : null}
           </li>
         </ul>
       </div>
