@@ -22,7 +22,7 @@ const Tienda = () => {
   const itemsToShow = allProducts?.slice(startIndex, endIndex);
 
   useEffect(() => {
-    dispatch(getProducts());
+   dispatch(getProducts());
   }, []);
 
   return (

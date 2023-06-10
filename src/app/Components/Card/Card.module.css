@@ -18,7 +18,7 @@
 
 .img {
   width: 100%;
-  height: 150px; /* Cambia el valor para ajustar la altura deseada */
+  height: 80px; /* Cambia el valor para ajustar la altura deseada */
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   object-fit: contain;
@@ -59,14 +59,20 @@
 }
 
 .detail {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
+  margin-left: 10px;
+  text-decoration: none;
 }
+
 
 .productInfo {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   margin-top: -20px;
+}
+
+.carrito{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }

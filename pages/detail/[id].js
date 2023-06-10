@@ -11,18 +11,18 @@ function productDetail({ product }) {
         <img className={styles.img} src={product[0].image} alt="Not found" />
         <div className={styles.infoContainer}>
           <div className={styles.propertyContainer}>
-            <h4>Name</h4> <div>{product[0].name} </div>
+            <h4>Name: </h4> <div>{product[0].name} </div>
           </div>
           <div className={styles.propertyContainer}>
-            <h4>Brand</h4>
+            <h4>Brand: </h4>
             <span> {product[0].brand}</span>
           </div>
           <div className={styles.propertyContainer}>
-            <h4>Category</h4>
+            <h4>Category: </h4>
             <span> {product[0].category}</span>
           </div>
           <div className={styles.propertyContainer}>
-            <h4>Descripcion</h4>
+            <h4>Descripcion: </h4>
             <p>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
@@ -41,7 +41,7 @@ function productDetail({ product }) {
             </p>
           </div>
           <div className={styles.propertyContainer}>
-            <h4>Price</h4>
+            <h4>Price: </h4>
             <span> {product[0].price} </span>
           </div>{" "}
           <Link href="/" className={styles.deleteFilter}>
@@ -49,6 +49,7 @@ function productDetail({ product }) {
           </Link>
         </div>{" "}
       </div>
+      <button href="/carrito"></button>
     </div>
   );
 }
