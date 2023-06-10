@@ -1301,9 +1301,6 @@ export default function (state = initialState, action) {
     return {
       ...state,
       carrito: [...state.carrito,action.payload]
-     
-     
-
     }
 
     case DELETE_CARRITO:

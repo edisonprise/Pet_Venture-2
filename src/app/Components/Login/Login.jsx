@@ -5,6 +5,9 @@ import { useDispatch } from "react-redux";
 import { setUserInfo, setUserState } from "../../../../redux/actions";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import styles from "./Login.module.css"
+import Link from "next/link";
+
 export default function Login() {
   const router = useRouter()
   const dispatch = useDispatch()
@@ -63,10 +66,18 @@ export default function Login() {
 
 
   return (
-    <div>
-      <button onClick={handlerOnClick}> Login with Google </button>
+    <div className={styles.container}>
+    <button className={styles.button} onClick={handlerOnClick}>
+      Login with Google
+    </button>
+    <div className={styles.homeContainer}>
+      <Link href="/" className={styles.home}>
+        Volver a Home
+      </Link>
     </div>
-  )
+  </div>
+  );
+  
 
   // if (userState === 2) {
   //   return (

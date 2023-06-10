@@ -68,7 +68,7 @@ export default function NavBarCarrito(props) {
         totalPrice  +=  e?.price
         // console.log(totalPrice)
       })}
-      <div className={styles.precios}>Precio Total: {totalPrice}</div>
+      <div className={styles.precios}>Precio Total: {totalPrice}$</div>
 
     </div>
   );
