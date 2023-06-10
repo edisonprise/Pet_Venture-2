@@ -26,8 +26,13 @@ export const SET_USER_INFO = "SET_USER_INFO";
 export function getProducts() {
   return async function (dispatch) {
     const response = (await axios.get("/api/products")).data;
+
+
+     //const response = getFakeProducts();
+
     
-    //const response = getFakeProducts();
+   
+
     return dispatch({ type: GET_PRODUCTS, payload: response });
   };
 }
@@ -37,7 +42,9 @@ export function addCarrito(id) {
   return async function (dispatch) {
     const response = (await axios.get(`/api/productsById?id=${id}`)).data
     console.log(response);
-    return dispatch({ type: ADD_CARRITO, payload: response[0]});
+
+    return dispatch({ type: ADD_CARRITO, payload: response[0] });
+
   };
 }
 

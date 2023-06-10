@@ -1,4 +1,5 @@
 import React from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 import { deleteCarrito } from "../../../../redux/actions";
 import styles from "./NavBarCarrito.module.css";
@@ -53,6 +54,7 @@ export default function NavBarCarrito(props) {
         // console.log(totalPrice)
       })}
       <div className={styles.precios}>Precio Total: {totalPrice}</div>
+
     </div>
   );
 }
