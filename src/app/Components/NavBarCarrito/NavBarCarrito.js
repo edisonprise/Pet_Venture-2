@@ -4,10 +4,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteCarrito } from "../../../../redux/actions";
 import styles from "./NavBarCarrito.module.css";
 import Link from "next/link";
+import  { useEffect } from "react";
+
 
 export default function NavBarCarrito(props) {
-  const carrito = useSelector((state) => state.carrito);
+  const carrito = useSelector((state) => state.carrito) 
+
   const dispatch = useDispatch();
+  useEffect(() => {
+    const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
+    if (cartFromLocalStorage) {
+      dispatch({ type: "SET_CARRITO", payload: cartFromLocalStorage });
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(carrito));
+  }, [carrito]);
+
+  
 
   const handlerDelete = (id) => {
     dispatch(deleteCarrito(id));

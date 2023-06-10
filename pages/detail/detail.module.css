@@ -8,6 +8,10 @@
   border: solid black;
   /* align-items: stretch; */
   /* background-color: tomato; */
+  background-image:url("https://img.freepik.com/vector-gratis/fondo-colorido-modelo-huellas-pata-perro-o-gato_1017-30662.jpg?w=2000") ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .img {
@@ -33,7 +37,7 @@
   justify-content: left;
   align-items: center;
   justify-items: baseline;
-  background-color: white;
+  text-align: justify;
   border-radius: 20px;
 }
 
@@ -111,7 +115,7 @@
   width: 80px;
   height: 40px;
   padding: 10px 10px;
-  background-color: gray;
+  background-color: rgb(214, 127, 21);
   color: white;
   border-radius: 5px;
   font-size: 16px;
@@ -120,4 +124,8 @@
   text-decoration: none;
 
   /* transition: background-color 0.3s ease-in-out; */
+}
+.buttonimg {
+  width: 100px;
+  height: 100px;
 }
