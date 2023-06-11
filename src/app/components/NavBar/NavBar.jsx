@@ -8,14 +8,14 @@ import { setUserState } from "../../../../redux/actions";
 import { useSelector } from "react-redux";
 
 const Navbar = () => {
-  const userState = useSelector((state) => state.userState)
-  const userInfo = useSelector((state) => state.userInfo)
-  console.log(userInfo)
-  const dispatch = useDispatch()
+  const userState = useSelector((state) => state.userState);
+  const userInfo = useSelector((state) => state.userInfo);
+  console.log(userInfo);
+  const dispatch = useDispatch();
   const handlerLogout = () => {
-    logout()
-    dispatch(setUserState(1))
-  }
+    logout();
+    dispatch(setUserState(1));
+  };
   return (
     <div className={styles.navbar}>
       <div className={styles.logo}>
@@ -35,10 +35,21 @@ const Navbar = () => {
             <Link href="/formulario">Crear Producto</Link>
           </li>
           <li>
-            {userState === 3 ? <Link href="/" onClick={handlerLogout}>Logout</Link> : <Link href="/login">Login</Link>}
+            <Link href="/dashboard">Dashboard</Link>
           </li>
           <li>
-            {userState === 3 ? <img src={userInfo.profilePicture} width="50px" height="50px" /> : null}
+            {userState === 3 ? (
+              <Link href="/" onClick={handlerLogout}>
+                Logout
+              </Link>
+            ) : (
+              <Link href="/login">Login</Link>
+            )}
+          </li>
+          <li>
+            {userState === 3 ? (
+              <img src={userInfo.profilePicture} width="50px" height="50px" />
+            ) : null}
           </li>
         </ul>
       </div>
