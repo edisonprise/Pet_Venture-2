@@ -1,10 +1,11 @@
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import { auth, getUserInfo, registerNewUser, userExist } from "../../Firebase/firebaseConfig";
+import { auth, getUserInfo, registerNewUser, userExist } from "@/app/firebase/firebaseConfig";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUserInfo, setUserState } from "../../../../redux/actions";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+
 export default function Login() {
   const router = useRouter()
   const dispatch = useDispatch()
