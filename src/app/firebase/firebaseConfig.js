@@ -11,14 +11,15 @@ import {
   setDoc,
   where,
 } from "firebase/firestore";
+import database from "../utils/db.json";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAdjrZCa-2WG82dmHU1aII0g6cRdKYzoQg",
-  authDomain: "pet-venture-1777a.firebaseapp.com",
-  projectId: "pet-venture-1777a",
-  storageBucket: "pet-venture-1777a.appspot.com",
-  messagingSenderId: "202804090837",
-  appId: "1:202804090837:web:69fcf8f98a1c2eefc20f5c",
+   apiKey: "AIzaSyAdjrZCa-2WG82dmHU1aII0g6cRdKYzoQg",
+   authDomain: "pet-venture-1777a.firebaseapp.com",
+   projectId: "pet-venture-1777a",
+   storageBucket: "pet-venture-1777a.appspot.com",
+   messagingSenderId: "202804090837",
+   appId: "1:202804090837:web:69fcf8f98a1c2eefc20f5c",
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -77,4 +78,13 @@ export async function getUserInfo(uid) {
   const docRef = doc(db, "users", uid);
   const document = await getDoc(docRef);
   return document.data();
+}
+export async function logout() {
+  await auth.signOut();
+}
+export default async function addDocuments() {
+  for (const producto of database) {
+    const ref = await addDoc(collection(db, "productos"), producto);
+    console.log(ref);
+  }
 }

@@ -1,0 +1,74 @@
+.cartContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+  }
+  
+  .cartCard {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    width: 20%;
+    display: flex;
+    margin: 5px;
+  padding: 10px;
+  order: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: stretch;
+  background-image: url("https://img.freepik.com/vector-premium/fondo-moderno-color-abstracto_34950-323.jpg");
+  }
+  
+  .cartCardInfo {
+    margin-bottom: 10px;
+  }
+  
+  .cartCardImage {
+    width: 75%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .cartCardButton {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .backtotienda {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 20px;
+  }
+  
+  .deleteFilter {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+  }
+  
+  .precios {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(175, 163, 163);
+    padding: 10px;
+    font-weight: bold;
+  }
+  
+  .rowContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  

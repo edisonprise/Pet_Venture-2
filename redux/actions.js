@@ -16,41 +16,50 @@ export const SET_FILTERED_PRODUCTS = "SET_FILTERED_PRODUCTS";
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
 
 export const ADD_CARRITO = "ADD_CARRITO";
-export const DELETE_CARRITO = "DELETE_CARRITO"; 
+export const DELETE_CARRITO = "DELETE_CARRITO";
 
 export const SET_USER_STATE = "SET_USER_STATE";
 export const SET_USER_INFO = "SET_USER_INFO";
-
+export const SET_CARRITO= 'SET_CARRITO'
 
 // export const GET_PRODUCTS_BY_NAME = "GET_PRODUCTS_BY_NAME";
 
 export function getProducts() {
   return async function (dispatch) {
     const response = (await axios.get("/api/products")).data;
+
+
      //const response = getFakeProducts();
+
+    
+   
+
     return dispatch({ type: GET_PRODUCTS, payload: response });
   };
 }
 
-// Carrito 
+// Carrito
 export function addCarrito(id) {
-  return async function (dispatch) {
-    const response = (await axios.get(`/api/productsById?id=${id}`)).data
-    console.log(response);
-    return dispatch({ type: ADD_CARRITO, payload: response });
+  return async function (dispatch, getState) {
+    const response = await axios.get(`/api/productsById?id=${id}`);
+    const producto = response.data[0];
+    dispatch({ type: ADD_CARRITO, payload: producto});
+
+    const { carrito } = getState();
+    localStorage.setItem('cart', JSON.stringify(carrito));
+
+    return producto;
   };
 }
 
 
-
-// Borra productos del carrito 
-export function deleteCarrito(id){
+// Borra productos del carrito
+export function deleteCarrito(id) {
   return {
-     type: DELETE_CARRITO, payload: id 
-  }
+    type: DELETE_CARRITO,
+    payload: id,
+  };
 };
-
-
 
 export function getProcuctById(id) {
   return async function (dispatch) {
@@ -98,8 +107,6 @@ export function getFilteredProducts(filters) {
     type: GET_FILTERED_PRODUCTS,
     payload: result,
   };
-
-
 }
 
 //& category - filter category

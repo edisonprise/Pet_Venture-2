@@ -12,7 +12,8 @@ import {
   SET_USER_STATE,
   SET_USER_INFO,
   ADD_CARRITO,
-  DELETE_CARRITO
+  DELETE_CARRITO,
+  SET_CARRITO
 
 } from "./actions";
 
@@ -1303,10 +1304,17 @@ export default function (state = initialState, action) {
     }
 
     case DELETE_CARRITO:
-      return {
-        ...state,
-        carrito : state.carrito.filter(event => event.id !== action.payload)
-      }
+  const updatedCart = state.carrito.filter(item => item.id !== action.payload);
+  return {
+    ...state,
+    carrito: updatedCart
+  };
+
+  case SET_CARRITO:
+  return {
+    ...state,
+    carrito: action.payload
+  };
 
     case USERS_ERROR:
       return {

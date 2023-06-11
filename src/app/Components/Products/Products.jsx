@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../NavBar/NavBar";
-import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../../../redux/actions";
+// import { useDispatch, useSelector } from "react-redux";
+// import { getProducts } from "../../../../redux/actions";
 import Card from "../Card/Card";
 import styles from "./Products.module.css";
 

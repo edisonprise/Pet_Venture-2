@@ -10,13 +10,14 @@ function Card(props) {
  
   const handleAddToCart = (productId) => {
     dispatch(addCarrito(productId));
+    alert('se añadio producto')
   };
   
   return (
     <div className={styles.container}>
       <div className={styles.carrito}>
       <button onClick={() => handleAddToCart(props.id)}>
-        {console.log(props.id)}
+        {/* {console.log(props.id)} */}
               <p className={styles.button}>Añadir al Carrito</p>
           </button>
       </div>
