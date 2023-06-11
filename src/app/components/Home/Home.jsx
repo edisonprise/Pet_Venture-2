@@ -16,7 +16,7 @@ export default function Home() {
   const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   useEffect(() => {
-    //dispatch(getProducts());
+    dispatch(getProducts());
   }, []);
   // ! Esta funcion esta comenentada para después poder cargar productos
   // const handlerClick = () => {
