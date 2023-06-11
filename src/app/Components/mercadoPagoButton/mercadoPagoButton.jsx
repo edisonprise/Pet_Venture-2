@@ -4,7 +4,7 @@ import styles from "./mercadoPago.button.module.css"
 import { Loader } from "../Loader/Loader";
 
 
-const MercadoPagoButton = ({ product }) => {
+const MercadoPagoButton = ({ carrito }) => {
     const [url, setUrl] = useState(null)
     const [loading, setLoading] = useState(true);
 
@@ -13,7 +13,7 @@ const MercadoPagoButton = ({ product }) => {
             setLoading(true)
             try {
                 const { data: preference } = await axios.post("/api/checkout", {
-                    product
+                    carrito
                 });
 
                 setUrl(preference.url);
@@ -24,7 +24,7 @@ const MercadoPagoButton = ({ product }) => {
         };
 
         generateLink();
-    }, [product]);
+    }, [carrito]);
     return (
         <div>
             {loading ? (

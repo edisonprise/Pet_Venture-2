@@ -7,19 +7,17 @@ mercadopago.configure({
 
 export async function POST(request) {
   const data = await request.json();
-  //   console.log(product.product);
+  console.log(data.carrito);
 
   const URL = "http://localhost:3000";
 
   try {
     const preference = {
-      items: [
-        {
-          title: data.product.title,
-          unit_price: data.product.price,
-          quantity: 1,
-        },
-      ],
+      items: data.carrito.map((product) => ({
+        title: product.name,
+        unit_price: product.price,
+        quantity: 1,
+      })),
       auto_return: "approved",
       back_urls: {
         success: `${URL}`,
