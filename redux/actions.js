@@ -25,7 +25,7 @@ export const SET_USER_INFO = "SET_USER_INFO";
 // export const GET_PRODUCTS_BY_NAME = "GET_PRODUCTS_BY_NAME";
 
 export function getProducts() {
-  return async function (dispatch) 
+  return async function (dispatch) {
     const response = (await axios.get("/api/products")).data;
      //const response = getFakeProducts();
     return dispatch({ type: GET_PRODUCTS, payload: response });
