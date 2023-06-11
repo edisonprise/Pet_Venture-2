@@ -1,25 +1,27 @@
 import React from "react";
 import styles from "./card.module.css";
 import Link from "next/link";
-import { addCarrito, deleteCarrito } from "../../../../redux/actions"
+import { addCarrito, deleteCarrito } from "../../../../redux/actions";
 import { useDispatch } from "react-redux";
 
 function Card(props) {
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
- 
   const handleAddToCart = (productId) => {
     dispatch(addCarrito(productId));
-    alert('se añadio producto')
+    alert("se añadio producto");
   };
-  
+
   return (
     <div className={styles.container}>
       <div className={styles.carrito}>
-      <button onClick={() => handleAddToCart(props.id)}>
-        {/* {console.log(props.id)} */}
-              <p className={styles.button}>Añadir al Carrito</p>
-          </button>
+        <button
+          className={styles.deleteFilter}
+          onClick={() => handleAddToCart(props.id)}
+        >
+          {/* {console.log(props.id)} */}
+          <p className={styles.button}>Añadir al Carrito</p>
+        </button>
       </div>
       <div className={styles.card}>
         <img className={styles.img} src={props.image} alt="Not found" />
