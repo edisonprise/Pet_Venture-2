@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  background-image: url("https://img.freepik.com/vector-premium/fondo-moderno-color-abstracto_34950-323.jpg");
+  background-image: url("https://t3.ftcdn.net/jpg/02/73/16/24/240_F_273162497_ShAAB1TH0vhM4UUWbhBuao8jtGBDubwD.jpg");
   background-size: cover; /* Ajusta el tamaño de la imagen al contenedor */
   background-repeat: no-repeat;
   background-position: center center;
@@ -76,3 +76,12 @@
   flex-direction: column;
   text-align: center;
 }
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+ 
+}
+

@@ -5,6 +5,7 @@ import { deleteCarrito } from "../../../../redux/actions";
 import styles from "./NavBarCarrito.module.css";
 import Link from "next/link";
 import { useEffect } from "react";
+import Swal from 'sweetalert2'
 import MercadoPagoButton from "../mercadoPagoButton/mercadoPagoButton";
 
 export default function NavBarCarrito(props) {
@@ -24,13 +25,35 @@ export default function NavBarCarrito(props) {
 
   const handlerDelete = (id) => {
     dispatch(deleteCarrito(id));
-    alert("Producto borrado");
+    let timerInterval
+Swal.fire({
+  title: 'Sacando producto del carrito',
+  html: 'Espere <b></b> milisegundos.',
+  timer: 2000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading()
+    const b = Swal.getHtmlContainer().querySelector('b')
+    timerInterval = setInterval(() => {
+      b.textContent = Swal.getTimerLeft()
+    }, 100)
+  },
+  willClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+})
   };
 
   let totalPrice = 0;
 
   return (
-    <div>
+    
+    <div className={styles.container}>
       <div className={styles.backtotienda}>
         <Link href="/tienda">
           <p className={styles.deleteFilter}>Volver a la tienda</p>
@@ -68,7 +91,7 @@ export default function NavBarCarrito(props) {
           </div>
         );
       })}
-
+       
       {carrito.forEach((e) => {
         totalPrice += e?.price;
         // console.log(totalPrice)
