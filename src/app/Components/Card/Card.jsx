@@ -3,6 +3,7 @@ import styles from "./card.module.css";
 import Link from "next/link";
 import { addCarrito, deleteCarrito } from "../../../../redux/actions"
 import { useDispatch } from "react-redux";
+import Swal from 'sweetalert2'
 
 function Card(props) {
 
@@ -10,16 +11,29 @@ function Card(props) {
  
   const handleAddToCart = (productId) => {
     dispatch(addCarrito(productId));
-    alert('se añadio producto')
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Producto agregado al carrito',
+      showConfirmButton: false,
+      timer: 1500
+    })
   };
+
+
+
   
   return (
+
+
+    
     <div className={styles.container}>
       <div className={styles.carrito}>
-      <button onClick={() => handleAddToCart(props.id)}>
-        {/* {console.log(props.id)} */}
-              <p className={styles.button}>Añadir al Carrito</p>
-          </button>
+     
+       
+              
+          <button onClick={() => handleAddToCart(props.id)}
+          className={styles.button}>Agregar al carrito</button>
       </div>
       <div className={styles.card}>
         <img className={styles.img} src={props.image} alt="Not found" />

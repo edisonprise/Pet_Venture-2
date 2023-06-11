@@ -65,7 +65,7 @@
 }
 
 .deleteFilter:hover {
-  background-color: tomato;
+  background-color: rgb(217, 168, 34);
 }
 
 .deleteFilter:active {
