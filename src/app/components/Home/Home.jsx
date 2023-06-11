@@ -18,13 +18,14 @@ export default function Home() {
   useEffect(() => {
     //dispatch(getProducts());
   }, []);
-  const handlerClick = () => {
-    addDocuments()
-  }
+  // ! Esta funcion esta comenentada para después poder cargar productos
+  // const handlerClick = () => {
+  //   addDocuments()
+  // }
 
   return (
     <div className={styles.container}>
-      <button onClick={handlerClick}></button>
+      {/* <button onClick={handlerClick}></button> */}
       <Navbar />
       <Slider />
       <Ofertas products={products} />

@@ -1,12 +1,10 @@
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import { auth, getUserInfo, registerNewUser, userExist } from "../../Firebase/firebaseConfig";
+import { auth, getUserInfo, registerNewUser, userExist } from "@/app/firebase/firebaseConfig";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUserInfo, setUserState } from "../../../../redux/actions";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import styles from "./Login.module.css"
-import Link from "next/link";
 
 export default function Login() {
   const router = useRouter()
@@ -66,18 +64,10 @@ export default function Login() {
 
 
   return (
-    <div className={styles.container}>
-    <button className={styles.button} onClick={handlerOnClick}>
-      Login with Google
-    </button>
-    <div className={styles.homeContainer}>
-      <Link href="/" className={styles.home}>
-        Volver a Home
-      </Link>
+    <div>
+      <button onClick={handlerOnClick}> Login with Google </button>
     </div>
-  </div>
-  );
-  
+  )
 
   // if (userState === 2) {
   //   return (
