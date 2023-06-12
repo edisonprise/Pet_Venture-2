@@ -54,16 +54,19 @@ Swal.fire({
   return (
     
     <div className={styles.container}>
-      <div className={styles.backtotienda}>
-        <Link href="/tienda">
-          <p className={styles.deleteFilter}>Volver a la tienda</p>
-        </Link>
-      </div>
+     
 
       {carrito.map((e) => {
         return (
           <div className={styles.cartCard} key={e?.id}>
             <div className={styles.cartCardInfo}>
+            {e?.image && (
+                <img
+                  className={styles.cartCardImage}
+                  src={e?.image}
+                  alt="Not found"
+                />
+              )}
               <div>Name: {e?.name}</div>
               <div>
                 Categoria: {e?.category}
@@ -74,13 +77,7 @@ Swal.fire({
                 <br />
                 Precio: {e?.price}
               </div>
-              {e?.image && (
-                <img
-                  className={styles.cartCardImage}
-                  src={e?.image}
-                  alt="Not found"
-                />
-              )}
+              
             </div>
             <button
               className={styles.cartCardButton}
@@ -96,10 +93,18 @@ Swal.fire({
         totalPrice += e?.price;
         // console.log(totalPrice)
       })}
-      <div className={styles.precios}>
+      
+     
+     
+        <div className={styles.precios}>
         Precio Total: {totalPrice}$
         <MercadoPagoButton carrito={carrito} />
+        <Link href="/tienda">
+          <p className={styles.deleteFilter}>Volver a la tienda</p>
+        </Link>
       </div>
-    </div>
+      
+      </div>
+    
   );
 }
