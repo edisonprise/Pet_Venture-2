@@ -2,8 +2,20 @@ import React from "react";
 import Link from "next/link";
 import PetVenture from "../../../../public/img/PetVenture.svg";
 import styles from "./Navbar.module.css";
+import { logout } from "@/app/firebase/firebaseConfig";
+import { useDispatch } from "react-redux";
+import { setUserState } from "../../../../redux/actions";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const userState = useSelector((state) => state.userState);
+  const userInfo = useSelector((state) => state.userInfo);
+  console.log(userInfo);
+  const dispatch = useDispatch();
+  const handlerLogout = () => {
+    logout();
+    dispatch(setUserState(1));
+  };
   return (
     <div className={styles.navbar}>
       <div className={styles.logo}>
@@ -11,7 +23,7 @@ const Navbar = () => {
       </div>
 
       <div className={styles.menu}>
-        <ul className={styles.menuList}>
+        <ul className={styles.menu.li}>
           <li>
             <Link href="/nosotros">Nosotros</Link>
           </li>
@@ -21,6 +33,23 @@ const Navbar = () => {
           </li>
           <li>
             <Link href="/formulario">Crear Producto</Link>
+          </li>
+          <li>
+            <Link href="/dashboard">Dashboard</Link>
+          </li>
+          <li>
+            {userState === 3 ? (
+              <Link href="/" onClick={handlerLogout}>
+                Logout
+              </Link>
+            ) : (
+              <Link href="/login">Login</Link>
+            )}
+          </li>
+          <li>
+            {userState === 3 ? (
+              <img src={userInfo.profilePicture} width="50px" height="50px" />
+            ) : null}
           </li>
         </ul>
       </div>

@@ -6,27 +6,31 @@ import Ofertas from "../Ofertas/Ofertas";
 import Ofertas2 from "../Ofertas2/Ofertas2";
 import Footer from "../Footer/Footer";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../../../../redux/actions";
+// import addDocuments from "@/app/Firebase/firebaseConfig";
 
-import {
-  getBrands,
-  getCategories,
-  getSubCategories,
-} from "../../../../redux/actions";
+import styles from "./Home.module.css";
+
 export default function Home() {
+  const products = useSelector((state) => state.products);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProducts());
-  }, [dispatch]);
+  }, []);
+  // ! Esta funcion esta comenentada para después poder cargar productos
+  // const handlerClick = () => {
+  //   addDocuments()
+  // }
 
   return (
-    <div>
+    <div className={styles.container}>
+      {/* <button onClick={handlerClick}></button> */}
       <Navbar />
       <Slider />
-      <Ofertas />
-      <Ofertas2 />
-      <Footer></Footer>
+      <Ofertas products={products} />
+      <Ofertas2 products={products} />
+      <Footer />
     </div>
   );
 }
