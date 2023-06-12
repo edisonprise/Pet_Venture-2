@@ -18,7 +18,7 @@
   justify-content: space-evenly;
   flex-direction: column;
   align-items: stretch;
-  background-color: rgb(230, 230, 230);
+  background-image: url("https://as2.ftcdn.net/v2/jpg/02/02/31/39/1000_F_202313943_RmQzYfyv9Yi9rRFwkkFuITTR5ERs4xJM.jpg");
   }
   
   .cartCardInfo {
@@ -32,7 +32,7 @@
   }
   
   .cartCardButton {
-    background-color: #f44336;
+    background-color: #e6351a;
     color: white;
     border: none;
     padding: 8px 16px;
@@ -59,10 +59,11 @@
   .precios {
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
+    
+    right:0;
+    width: 14%;
     background-color: rgb(175, 163, 163);
-    padding: 10px;
+    padding: 5px;
     font-weight: bold;
   }
   
@@ -77,5 +78,27 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center center;
+      display: flex;
+      
+      flex-wrap: wrap;
     }
+    
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      background-image: url("https://as2.ftcdn.net/v2/jpg/02/02/31/39/1000_F_202313943_RmQzYfyv9Yi9rRFwkkFuITTR5ERs4xJM.jpg");
+      background-size: cover; /* Ajusta el tamaño de la imagen al contenedor */
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 300px;
+      width: 150px;
+      margin: 5px;
+      padding: 10px;
+      border: 1px solid black;
+      border-radius: 5px;
+      text-align: center;
+      justify-content: space-evenly;
+    }
+    
     
