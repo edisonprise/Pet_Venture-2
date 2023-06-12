@@ -93,9 +93,6 @@ Swal.fire({
         totalPrice += e?.price;
         // console.log(totalPrice)
       })}
-      
-     
-     
         <div className={styles.precios}>
         Precio Total: {totalPrice}$
         <MercadoPagoButton carrito={carrito} />

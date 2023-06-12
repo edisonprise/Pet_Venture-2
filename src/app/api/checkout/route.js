@@ -9,7 +9,7 @@ export async function POST(request) {
   const data = await request.json();
   console.log(data.carrito);
 
-  const URL = "http://localhost:3000";
+  const URL = "http://localhost:3000"; //ojo cambiar al url que me da el  serv
 
   try {
     const preference = {
