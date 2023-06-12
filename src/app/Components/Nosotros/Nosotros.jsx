@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./Nosotros.module.css";
 import Link from "next/link";
 
 
