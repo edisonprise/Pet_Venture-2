@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-
+import styles form "./Nosotros.module.css";
 
 const Nosotros = () => {
   return (
