@@ -9,7 +9,7 @@ export async function POST(request) {
   const data = await request.json();
   console.log(data.carrito);
 
-  const URL = "http://localhost:3000";
+  const URL = "https://pet-venture-2-oeyzprpzk-jesusegomez.vercel.app";
 
   try {
     const preference = {

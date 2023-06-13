@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../../../redux/actions";
-import styles from "./ofertas2.module.css";
+import styles from "./Ofertas2.module.css";
 
 import Card from "../Card/Card";
 

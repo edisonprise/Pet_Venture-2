@@ -1,3 +1,4 @@
+import Home from "@/app/components/Home/Home";
 import React from "react";
 import Link from "next/link";
 import PetVenture from "../../../../public/img/PetVenture.svg";
