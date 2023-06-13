@@ -39,7 +39,10 @@ export default function Login() {
             displayName: user.displayName,
             profilePicture: user.photoURL,
             username: "",
-            processCompleted: false
+            processCompleted: false,
+            carrito: [],
+            compras: []
+
           })
           dispatch(setUserState(2))
           dispatch(setUserInfo(userInfo))

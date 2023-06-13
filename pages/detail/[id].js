@@ -3,6 +3,8 @@ import axios from "axios";
 import React from "react";
 import Link from "next/link";
 import styles from "./detail.module.css";
+import Review from "@/app/Components/Review/Review";
+import CommentBox from "@/app/Components/CommentBox/CommentBox";
  
 
 function productDetail({ product }) {
@@ -55,8 +57,11 @@ function productDetail({ product }) {
         </div>{" "}
       </div>
       <div>
-        
         <p></p>
+      </div>
+      <Review></Review>
+      <div>
+        <CommentBox></CommentBox>
       </div>
     </div>
   );

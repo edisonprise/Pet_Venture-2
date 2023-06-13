@@ -1248,7 +1248,9 @@ export const initialState = {
   productDetail: [],
   userState: 1,
   userInfo: [],
-  carrito: []
+  carrito: [],
+  compras: [], //agrego estado de compras del usuario.
+  comments: [], // comentarios del usuario
 };
 // * Estados del usuario
 //* 1: No legueado, 2: autenticado, 3: Registrado
@@ -1313,19 +1315,26 @@ export default function (state = initialState, action) {
   case SET_CARRITO:
   return {
     ...state,
-    carrito: action.payload
+    carrito: action.payload,
+    compras: action.compras // probando. 
   };
 
-    case USERS_ERROR:
+  case 'ADD_COMMENT':
+      return {
+        ...state,
+        comments: [...state.comments, action.payload],
+      };
+
+  case USERS_ERROR:
       return {
         error: action.payload,
       };
-    case SET_USER_STATE:
+   case SET_USER_STATE:
       return {
         ...state,
         userState: action.payload,
       };
-    case SET_USER_INFO:
+  case SET_USER_INFO:
       return {
         ...state,
         userInfo: action.payload,

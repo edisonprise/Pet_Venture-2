@@ -56,6 +56,7 @@ export function deleteCarrito(id) {
   };
 }
 
+// Producto por ID
 export function getProcuctById(id) {
   return async function (dispatch) {
     const response = (await axios.get(`/api/productsById?id=${id}`)).data;
@@ -116,3 +117,12 @@ export function setUserState(state) {
 export function setUserInfo(info) {
   return { type: SET_USER_INFO, payload: info };
 }
+
+// actions.js
+export const addComment = (comment) => {
+  return {
+    type: 'ADD_COMMENT',
+    payload: comment,
+  };
+};
+

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../../../redux/actions";
-import styles from "./ofertas2.module.css";
+import styles from "./Ofertas2.module.css";
 
 import Card from "../Card/Card";
 
@@ -15,7 +15,7 @@ export default function Ofertas2(props) {
     <div className={styles.ofertasContainer}>
       <h2 className={styles.ofertasTitle}>Mas Comprados</h2>
       <div className={styles.ofertasGrid}>
-        {props.products.slice(0,6).map((p, i) => (
+        {props.products.slice(8, 20).map((p, i) => (
           <Card
             key={i}
             image={p.image}

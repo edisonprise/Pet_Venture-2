@@ -1,3 +1,4 @@
+import Home from "@/app/components/Home/Home";
 import React from "react";
 import Link from "next/link";
 import PetVenture from "../../../../public/img/PetVenture.svg";
@@ -30,6 +31,9 @@ const Navbar = () => {
 
           <li>
             <Link href="/tienda">Tienda</Link>
+          </li>
+          <li>
+            <Link href="/compras">Mis Compras</Link>
           </li>
           <li>
             <Link href="/formulario">Crear Producto</Link>
