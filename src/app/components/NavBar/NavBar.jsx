@@ -32,6 +32,9 @@ const Navbar = () => {
             <Link href="/tienda">Tienda</Link>
           </li>
           <li>
+            <Link href="/compras">Mis Compras</Link>
+          </li>
+          <li>
             <Link href="/formulario">Crear Producto</Link>
           </li>
           <li>
