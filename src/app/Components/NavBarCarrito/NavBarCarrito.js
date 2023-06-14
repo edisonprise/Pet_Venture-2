@@ -22,57 +22,18 @@ export default function NavBarCarrito(props) {
     localStorage.setItem("cart", JSON.stringify(carrito));
   }, [carrito]);
 
-  const handlerDelete = (id) => {
-    const existingProduct = carrito.find((product) => product.id === id);
+  
 
-    if (existingProduct.quantity > 1) {
-      // Si la cantidad es mayor a 1, mostrar un prompt para ingresar la cantidad a eliminar
-      const quantityToDelete = prompt(
-        `Ingrese la cantidad a eliminar (máximo: ${existingProduct.quantity})`,
-        "1"
-      );
-      const quantityToDeleteNumber = parseInt(quantityToDelete, 10);
-      if (
-        !isNaN(quantityToDeleteNumber) &&
-        quantityToDeleteNumber >= 1 &&
-        quantityToDeleteNumber <= existingProduct.quantity
-      ) {
-        dispatch(decreaseQuantity(id, quantityToDeleteNumber));
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "La cantidad ingresada es inválida",
-        });
-      }
-    } else {
-      // Si la cantidad es igual a 1, eliminar el producto del carrito
-      dispatch(deleteCarrito(id));
-    }
-
-    let timerInterval;
-    Swal.fire({
-      title: "Sacando producto del carrito",
-      html: "Espere <b></b> milisegundos.",
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading();
-        const b = Swal.getHtmlContainer().querySelector("b");
-        timerInterval = setInterval(() => {
-          b.textContent = Swal.getTimerLeft();
-        }, 100);
-      },
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
-    }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        console.log("I was closed by the timer");
-      }
-    });
-  };
+ 
+const handlerDelete = (id, quantityToDelete) => {
+  dispatch(deleteCarrito(id, quantityToDelete));
+  
+  Swal.fire(
+    "Producto borrado del carrito",
+    "Se ha eliminado el producto del carrito",
+    "success"
+  );
+}
 
   let totalPrice = 0;
 
@@ -127,19 +88,17 @@ export default function NavBarCarrito(props) {
             </div>
             <button
               className={styles.cartCardButton}
-              onClick={() => handlerDelete(e.id)}
+              onClick={() => handlerDelete(e?.id, e?.quantity)}
             >
               <p>Borrar del Carrito</p>
             </button>
           </div>
         );
       })}
-       
-      {carrito.forEach((e) => {
-        totalPrice += e?.price;
-        // console.log(totalPrice)
-      })}
-        <div className={styles.precios}>
+      <div className={styles.precios}>
+        {carrito.forEach((product) => {
+          totalPrice += product.price;
+        })}
         Precio Total: {totalPrice}$
         {isCarritoEmpty ? (
           <>

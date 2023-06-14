@@ -1,16 +1,13 @@
-"use client";
-import axios from "axios";
-import React from "react";
-import Link from "next/link";
-import styles from "./detail.module.css";
-import Review from "@/app/Components/Review/Review";
-import CommentBox from "@/app/Components/CommentBox/CommentBox";
- 
+import axios from 'axios';
+import React from 'react';
+import Link from 'next/link';
+import styles from './detail.module.css';
+import Review from '@/app/Components/Review/Review';
+import CommentBox from '@/app/Components/CommentBox/CommentBox';
 
-function productDetail({ product }) {
+function ProductDetail({ productId, product }) {
   return (
     <div>
-
       <div className={styles.container}>
         <img className={styles.img} src={product[0].image} alt="Not found" />
         <div className={styles.infoContainer}>
@@ -26,7 +23,7 @@ function productDetail({ product }) {
             <span> {product[0].category}</span>
           </div>
           <div className={styles.propertyContainer}>
-            <h4>Descripcion: </h4>
+            <h4>Description: </h4>
             <p>
               Sed ut perspiciatis unde omnis iste natus error sit voluptatem
               accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
@@ -47,37 +44,31 @@ function productDetail({ product }) {
           <div className={styles.propertyContainer}>
             <h4>Price: </h4>
             <span> {product[0].price} </span>
-          </div>{" "}
+          </div>
           <Link href="/" className={styles.deleteFilter}>
             Volver a Home
-          </Link> 
+          </Link>
           <Link href="/tienda" className={styles.deleteFilter}>
             Volver a la tienda
           </Link>
-        </div>{" "}
+        </div>
       </div>
-      <div>
-        <p></p>
-      </div>
-      <Review></Review>
-      <div>
-        <CommentBox></CommentBox>
-      </div>
+     
+      <CommentBox productId={productId} />
     </div>
   );
 }
 
-export default productDetail;
+export default ProductDetail;
 
 export async function getServerSideProps(context) {
   const { id } = context.query;
-  const response = await axios.get(
-    `http://localhost:3000/api/productsById?id=${id}`
-  );
+  const response = await axios.get(`http://localhost:3000/api/productsById?id=${id}`);
   const product = response.data;
 
   return {
     props: {
+      productId: id,
       product,
     },
   };
