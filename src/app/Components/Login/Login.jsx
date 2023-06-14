@@ -1,10 +1,12 @@
 import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup } from "firebase/auth";
-import { auth } from "../../Firebase/firebaseConfig";
+import { auth, getUserInfo, registerNewUser, userExist } from "@/app/firebase/firebaseConfig";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { setUserInfo, setUserState } from "../../../../redux/actions";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import styles from './Login.module.css'
+
 export default function Login() {
   const router = useRouter()
   const dispatch = useDispatch()
@@ -12,17 +14,42 @@ export default function Login() {
 
   useEffect(() => {
     onAuthStateChanged(auth, handlerUserStateChanged)
-    if (userState) {
+    if (userState === 2) {
       router.push("/createUserName")
+    }
+    if (userState === 3) {
+      router.push("/")
     }
   }, [userState])
 
-  const handlerUserStateChanged = (user) => {
+  const handlerUserStateChanged = async (user) => {
+    console.log(user)
     if (user) {
-      dispatch(setUserState(true))
-      dispatch(setUserInfo(user))
+      const isRegistered = userExist(user.uid)
+      if (isRegistered) {
+        const userInfo = await getUserInfo(user.uid)
+        if (userInfo?.processCompleted) {
+          dispatch(setUserState(3))
+          dispatch(setUserInfo(userInfo))
+
+        }
+        else {
+          await registerNewUser({
+            uid: user.uid,
+            displayName: user.displayName,
+            profilePicture: user.photoURL,
+            username: "",
+            processCompleted: false,
+            carrito: [],
+            compras: []
+
+          })
+          dispatch(setUserState(2))
+          dispatch(setUserInfo(userInfo))
+        }
+      }
     } else {
-      console.log("no hay nadie")
+      dispatch(setUserState(1))
     }
   }
   const handlerOnClick = async () => {
@@ -39,12 +66,31 @@ export default function Login() {
     }
   };
 
+
   return (
-    <div>
-
-
-      <button onClick={handlerOnClick}> Login with Google </button>
-
+    <div className={styles.container}>
+      <div className={styles.fondo}></div>
+     
+      <button  className={styles.deleteFilter} onClick={handlerOnClick}> Login with Google </button>
+      <div/>
     </div>
-  );
+    
+  )
+
+  // if (userState === 2) {
+  //   return (
+  //     <div>
+  //       Estas autenticado...
+  //     </div>
+  //   )
+  // }
+  // if (userState === 3) {
+  //   return (
+  //     <div>
+  //       Estas Registrado...
+  //     </div>
+  //   )
+  // }
+
+
 }
