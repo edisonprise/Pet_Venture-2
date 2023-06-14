@@ -118,4 +118,6 @@ const handlerDelete = (id, quantityToDelete) => {
       </div>
     </div>
   );
-}
+
+};
+
