@@ -3,12 +3,16 @@ import { connect } from 'react-redux';
 import { addComment } from '../../../../redux/actions';
 import styles from './Review.module.css';
 
-const Review = ({ addComment }) => {
+const Review = ({ onAddComment }) => {
   const [comment, setComment] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    addComment(comment);
+    if (comment.trim() === '') {
+      return; // Evitar agregar un comentario vacío
+    }
+
+    onAddComment(comment);
     setComment('');
   };
 
@@ -23,7 +27,9 @@ const Review = ({ addComment }) => {
           onChange={(e) => setComment(e.target.value)}
           placeholder="Escribe tu comentario aquí"
         ></textarea>
-        <button className={styles.button} type="submit">Enviar comentario</button>
+        <button className={styles.button} type="submit">
+          Enviar comentario
+        </button>
       </form>
     </div>
   );

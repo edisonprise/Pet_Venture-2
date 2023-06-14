@@ -22,6 +22,7 @@ export const SET_USER_STATE = "SET_USER_STATE";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_CARRITO = "SET_CARRITO";
 
+export const ADD_COMMENT ='ADD_COMMENT';
 // export const GET_PRODUCTS_BY_NAME = "GET_PRODUCTS_BY_NAME";
 
 export function getProducts() {
@@ -49,12 +50,13 @@ export function addCarrito(id) {
 }
 
 // Borra productos del carrito
-export function deleteCarrito(id) {
+export function deleteCarrito(id, quantityToDelete) {
   return {
     type: DELETE_CARRITO,
-    payload: id,
+    payload: { id, quantityToDelete },
   };
 }
+
 
 // Producto por ID
 export function getProcuctById(id) {
@@ -117,12 +119,12 @@ export function setUserState(state) {
 export function setUserInfo(info) {
   return { type: SET_USER_INFO, payload: info };
 }
-
-// actions.js
-export const addComment = (comment) => {
+export const addComment = (productId, comment) => {
   return {
-    type: 'ADD_COMMENT',
-    payload: comment,
+    type: ADD_COMMENT,
+    payload: {
+      productId,
+      comment,
+    },
   };
 };
-

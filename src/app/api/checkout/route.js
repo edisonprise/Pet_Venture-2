@@ -9,7 +9,7 @@ export async function POST(request) {
   const data = await request.json();
   console.log(data.carrito);
 
-  const URL = "https://pet-venture-2-oeyzprpzk-jesusegomez.vercel.app";
+  const URL = "https://pet-venture-2-oeyzprpzk-jesusegomez.vercel.app"; //ojo cambiar al url que me da el  serv
 
   try {
     const preference = {

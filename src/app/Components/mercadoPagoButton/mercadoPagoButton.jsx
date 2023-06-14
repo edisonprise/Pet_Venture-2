@@ -33,7 +33,7 @@ const MercadoPagoButton = ({ carrito }) => {
                 </button>
             ) : (
                 <a className={styles.button} href={url}>
-                    Comprar ahora
+                    Pagar ahora
                 </a>
             )}
         </div>
