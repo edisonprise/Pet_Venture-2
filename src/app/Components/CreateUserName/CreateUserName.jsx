@@ -1,11 +1,13 @@
 
 import { useFormik } from "formik"
+// import { existsUserName, updateUser } from "@/app/firebase/firebaseConfig"
 import { existsUserName, updateUser } from "@/app/firebase/firebaseConfig"
 import { useSelector, useDispatch } from "react-redux"
 import { setUserState } from "../../../../redux/actions"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
 import Swal from "sweetalert2";
+import styles from './CreateUserName.module.css'
 
 const validate = async values => {
     const exists = await existsUserName(values.userName)
@@ -49,10 +51,15 @@ export default function CreateUserName() {
         }
     })
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div>{`bienvenido ${displayName ? displayName : null}, crea tu nombre de usuario`}</div>
-            <label htmlFor="userName">Nombre de usuario: </label>
-            <input
+        <div className={styles.container}>
+            <div>
+        <form className={styles.mensaje}onSubmit={formik.handleSubmit}>
+        <div>
+             ¡Bienvenido! {displayName ? displayName : null}
+            <p style={{ marginTop: "10px" }}>Crea tu nombre de usuario</p>
+               </div>
+
+            <input className={styles.input}
                 type="text"
                 name="userName"
                 id="userName"
@@ -60,8 +67,10 @@ export default function CreateUserName() {
                 value={formik.values.userName}
             />
             {formik.errors.userName ? <div>{formik.errors.userName}</div> : null}
-            <button type="submit">Crear</button>
+            <button className={styles.deleteFilter} type="submit">Crear</button>
 
         </form>
+        </div>
+        </div>
     )
 }

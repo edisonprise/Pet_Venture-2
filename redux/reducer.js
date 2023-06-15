@@ -13,8 +13,9 @@ import {
   SET_USER_INFO,
   ADD_CARRITO,
   DELETE_CARRITO,
-  SET_CARRITO
-
+  SET_CARRITO,
+  ADD_COMMENT,
+  CLEAR_USER_DATA,
 } from "./actions";
 
 export const initialState = {
@@ -1248,10 +1249,19 @@ export const initialState = {
   productDetail: [],
   userState: 1,
   userInfo: [],
-  carrito: [],
-  compras: [], //agrego estado de compras del usuario.
-  comments: [], // comentarios del usuario
+  carrito: []
 };
+
+try {
+  if (typeof window !== "undefined") {
+    const storedComments = localStorage.getItem("comments");
+    if (storedComments) {
+      initialState.comments = JSON.parse(storedComments);
+    }
+  }
+} catch (error) {
+  console.error("Error al acceder al localStorage:", error);
+}
 // * Estados del usuario
 //* 1: No legueado, 2: autenticado, 3: Registrado
 
@@ -1315,29 +1325,29 @@ export default function (state = initialState, action) {
   case SET_CARRITO:
   return {
     ...state,
-    carrito: action.payload,
-    compras: action.compras // probando. 
+    carrito: action.payload
   };
 
-  case 'ADD_COMMENT':
-      return {
-        ...state,
-        comments: [...state.comments, action.payload],
-      };
-
-  case USERS_ERROR:
+    case USERS_ERROR:
       return {
         error: action.payload,
       };
-   case SET_USER_STATE:
+
+    case SET_USER_STATE:
       return {
         ...state,
         userState: action.payload,
       };
-  case SET_USER_INFO:
+    case SET_USER_INFO:
       return {
         ...state,
         userInfo: action.payload,
+      };
+    case CLEAR_USER_DATA:
+      return {
+        ...state,
+        userInfo: [],
+        carrito: [],
       };
     default:
       return state;

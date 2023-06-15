@@ -6,9 +6,12 @@ import Link from "next/link";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 import MercadoPagoButton from "../mercadoPagoButton/mercadoPagoButton";
+import { updateUser } from "@/app/firebase/firebaseConfig";
 
 export default function NavBarCarrito(props) {
   const carrito = useSelector((state) => state.carrito);
+  const userInfo = useSelector((state) => state.userInfo);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -16,66 +19,71 @@ export default function NavBarCarrito(props) {
     if (cartFromLocalStorage) {
       dispatch({ type: "SET_CARRITO", payload: cartFromLocalStorage });
     }
+    if (userInfo.carrito?.length !== 0) {
+      const userCarrito = [];
+      userInfo.carrito?.forEach((element) => {
+        userCarrito.push(element);
+      });
+      dispatch({ type: "SET_CARRITO", payload: userCarrito });
+    }
+    console.log(userInfo.carrito);
   }, [dispatch]);
 
   useEffect(() => {
+    console.log(carrito);
     localStorage.setItem("cart", JSON.stringify(carrito));
   }, [carrito]);
 
-const handlerDelete = (id) => {
-  const existingProductIndex = carrito.findIndex((product) => product.id === id);
-
-  if (existingProductIndex !== -1) {
-    const existingProduct = carrito[existingProductIndex];
+  const handlerDelete = (id) => {
+    const existingProduct = carrito.find((product) => product.id === id);
 
     if (existingProduct.quantity > 1) {
-      // Si la cantidad existente es mayor a 1, restar 1 a la cantidad del producto
-      dispatch(decreaseQuantity(id, 1));
-    } else {
-      // Si la cantidad existente es 1 o menos, eliminar el producto del carrito
-      dispatch(deleteCarrito(id));
-    }
-  }
-
-    if (existingProduct.quantity > 1) {
-      // If the existing quantity is greater than 1, prompt for the quantity to delete
-      Swal.fire({
-        title: "Borrar producto del carrito",
-        input: "number",
-        inputAttributes: {
-          min: 1,
-          max: existingProduct.quantity,
-          step: 1,
-        },
-        inputValue: existingProduct.quantity,
-        showCancelButton: true,
-        confirmButtonText: "Borrar",
-        cancelButtonText: "Cancelar",
-        inputValidator: (value) => {
-          if (value < 1 || value > existingProduct.quantity) {
-            return "Ingresa una cantidad válida";
-          }
-        },
-      }).then((result) => {
-        if (result.isConfirmed) {
-          const quantityToDelete = parseInt(result.value, 10);
-          dispatch(decreaseQuantity(id, quantityToDelete));
-          Swal.fire(
-            "Producto borrado del carrito",
-            `Se ha eliminado ${quantityToDelete} unidad(es) del producto`,
-            "success"
-          );
-        }
-      });
-    } else {
-      // If the existing quantity is 1 or less, delete the product from the cart
-      dispatch(deleteCarrito(id));
-      Swal.fire(
-        "Producto borrado del carrito",
-        "Se ha eliminado el producto del carrito",
-        "success"
+      // Si la cantidad es mayor a 1, mostrar un prompt para ingresar la cantidad a eliminar
+      const quantityToDelete = prompt(
+        `Ingrese la cantidad a eliminar (máximo: ${existingProduct.quantity})`,
+        "1"
       );
+      const quantityToDeleteNumber = parseInt(quantityToDelete, 10);
+      if (
+        !isNaN(quantityToDeleteNumber) &&
+        quantityToDeleteNumber >= 1 &&
+        quantityToDeleteNumber <= existingProduct.quantity
+      ) {
+        dispatch(decreaseQuantity(id, quantityToDeleteNumber));
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: "La cantidad ingresada es inválida",
+        });
+      }
+    } else {
+      // Si la cantidad es igual a 1, eliminar el producto del carrito
+      dispatch(deleteCarrito(id));
     }
+
+    let timerInterval;
+    Swal.fire({
+      title: "Sacando producto del carrito",
+      html: "Espere <b></b> milisegundos.",
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const b = Swal.getHtmlContainer().querySelector("b");
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft();
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      },
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
   };
 
   let totalPrice = 0;
@@ -109,7 +117,7 @@ const handlerDelete = (id) => {
         return (
           <div className={styles.cartCard} key={e.id}>
             <div className={styles.cartCardInfo}>
-              {e.image && (
+              {e?.image && (
                 <img
                   className={styles.cartCardImage}
                   src={e.image}
@@ -131,16 +139,22 @@ const handlerDelete = (id) => {
             </div>
             <button
               className={styles.cartCardButton}
-              onClick={() => handlerDelete(e.id)}
+              onClick={() => handlerDelete(e?.id, e?.quantity)}
             >
               <p>Borrar del Carrito</p>
             </button>
           </div>
         );
       })}
+
+      {carrito.forEach((e) => {
+        totalPrice += e?.price;
+        // console.log(totalPrice)
+      })}
+
       <div className={styles.precios}>
         {carrito.forEach((product) => {
-          totalPrice += product.price * product.quantity; // Multiply the price by the quantity
+          totalPrice += product.price;
         })}
         Precio Total: {totalPrice}$
         {isCarritoEmpty ? (

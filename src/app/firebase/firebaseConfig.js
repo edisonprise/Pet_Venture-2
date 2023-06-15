@@ -14,12 +14,20 @@ import {
 import database from "../utils/db.json";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAdjrZCa-2WG82dmHU1aII0g6cRdKYzoQg",
-  authDomain: "pet-venture-1777a.firebaseapp.com",
-  projectId: "pet-venture-1777a",
-  storageBucket: "pet-venture-1777a.appspot.com",
-  messagingSenderId: "202804090837",
-  appId: "1:202804090837:web:69fcf8f98a1c2eefc20f5c",
+  // apiKey: "AIzaSyAdjrZCa-2WG82dmHU1aII0g6cRdKYzoQg",
+  // authDomain: "pet-venture-1777a.firebaseapp.com",
+  // projectId: "pet-venture-1777a",
+  // storageBucket: "pet-venture-1777a.appspot.com",
+  // messagingSenderId: "202804090837",
+  // appId: "1:202804090837:web:69fcf8f98a1c2eefc20f5c",
+
+  apiKey: "AIzaSyAwcrHY5rIKNV57k9Bxj0pXKQRH1p7tUHs",
+  authDomain: "pet-venture.firebaseapp.com",
+  projectId: "pet-venture",
+  storageBucket: "pet-venture.appspot.com",
+  messagingSenderId: "182451092395",
+  appId: "1:182451092395:web:9e8c2bdf9cf6d1fa31b0ee",
+  measurementId: "G-FVG72QFE24",
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -32,6 +40,15 @@ export const getAllProducts = async () => {
     products.push({ id: doc.id, ...doc.data() });
   });
   return products;
+};
+
+export const getAllUsers = async () => {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  const users = [];
+  querySnapshot.forEach((doc) => {
+    users.push({ id: doc.id, ...doc.data() });
+  });
+  return users;
 };
 
 export const addProduct = async (product) => {
