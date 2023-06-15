@@ -20,12 +20,13 @@ export default function NavBarCarrito(props) {
       dispatch({ type: "SET_CARRITO", payload: cartFromLocalStorage });
     }
     if (userInfo.carrito?.length !== 0) {
-      const userCarrito = [];
+      const userCarrito = [...carrito];
       userInfo.carrito?.forEach((element) => {
         userCarrito.push(element);
       });
       dispatch({ type: "SET_CARRITO", payload: userCarrito });
     }
+
     console.log(userInfo.carrito);
   }, [dispatch]);
 
