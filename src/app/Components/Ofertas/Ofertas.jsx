@@ -15,7 +15,7 @@ export default function Ofertas(props) {
     <div className={styles.ofertasContainer}>
       <h2 className={styles.ofertasTitle}>Ofertas del Día</h2>
       <div className={styles.ofertasGrid}>
-        {props.products.slice(0, 13).map((p, i) => (
+        {props.products.slice(0, 8).map((p, i) => (
           <Card
             key={i}
             image={p.image}

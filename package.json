@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "pet_venture-2",
   "version": "0.1.0",
   "private": true,
@@ -45,4 +46,40 @@
     "prettier": "2.8.8",
     "typescript": "5.1.3"
   }
+=======
+"name": "pet_venture-2",
+"version": "0.1.0",
+"private": true,
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint"
+},
+"dependencies": {
+  "@nextui-org/react": "^1.0.0-beta.13",
+  "axios": "^1.4.0",
+  "bootstrap": "^5.3.0",
+  "firebase": "^9.22.1",
+  "formik": "^2.4.1",
+  "lodash-es": "^4.17.21",
+  "mercadopago": "^1.5.16",
+  "next": "13.4.4",
+  "next-redux-wrapper": "^8.1.0",
+  "react": "18.2.0",
+  "react-dom": "18.2.0",
+  "react-redux": "^8.0.7",
+  "react-router-dom": "^6.11.2",
+  "redux": "^4.2.1",
+  "redux-devtools-extension": "^2.13.9",
+  "redux-thunk": "^2.4.2",
+  "sweetalert2": "^11.7.12",
+  "yup": "^1.2.0"
+},
+"devDependencies": {
+  "@types/react": "18.2.8",
+  "prettier": "2.8.8",
+  "typescript": "5.1.3"
+}
+>>>>>>> 4c7cd9cc0d8b648ecd2918620c1deb56fe262b1e
 }

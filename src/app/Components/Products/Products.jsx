@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../NavBar/NavBar";
 // import { useDispatch, useSelector } from "react-redux";
 // import { getProducts } from "../../../../redux/actions";
 import Card from "../Card/Card";
 import styles from "./Products.module.css";
+import { Loader } from "../Loader/Loader";
 
 export default function Products(props) {
   //& Manejo de error por falta de resultados
@@ -12,7 +12,7 @@ export default function Products(props) {
       <div className={styles.container}>
         {" "}
         <h1 className={styles.notFound}>
-          No se encontraron resultados - Resetear filtros, por favor.{" "}
+          <Loader></Loader>
         </h1>
       </div>
     );

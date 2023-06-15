@@ -7,9 +7,8 @@ mercadopago.configure({
 
 export async function POST(request) {
   const data = await request.json();
-  console.log(data.carrito);
 
-  const URL = "http://localhost:3000";
+  const URL = "https://pet-venture-2-oeyzprpzk-jesusegomez.vercel.app"; //ojo cambiar al url que me da el  serv
 
   try {
     const preference = {
@@ -25,9 +24,7 @@ export async function POST(request) {
       },
       notification_url: `${URL}/api/notify`,
     };
-    console.log(preference);
     const response = await mercadopago.preferences.create(preference);
-    console.log(response.body.init_point);
     return NextResponse.json({ url: response.body.init_point });
   } catch (error) {
     NextResponse.error(error);
