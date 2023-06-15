@@ -13,8 +13,7 @@ import {
   SET_USER_INFO,
   ADD_CARRITO,
   DELETE_CARRITO,
-  SET_CARRITO
-
+  SET_CARRITO,
 } from "./actions";
 
 export const initialState = {
@@ -1248,7 +1247,7 @@ export const initialState = {
   productDetail: [],
   userState: 1,
   userInfo: [],
-  carrito: []
+  carrito: [],
 };
 // * Estados del usuario
 //* 1: No legueado, 2: autenticado, 3: Registrado
@@ -1297,24 +1296,26 @@ export default function (state = initialState, action) {
         paginaactual: 1,
       };
 
-    case  ADD_CARRITO: 
-    return {
-      ...state,
-      carrito: [...state.carrito,action.payload]
-    }
+    case ADD_CARRITO:
+      return {
+        ...state,
+        carrito: [...state.carrito, action.payload],
+      };
 
     case DELETE_CARRITO:
-  const updatedCart = state.carrito.filter(item => item.id !== action.payload);
-  return {
-    ...state,
-    carrito: updatedCart
-  };
+      const updatedCart = state.carrito.filter(
+        (item) => item.id !== action.payload
+      );
+      return {
+        ...state,
+        carrito: updatedCart,
+      };
 
-  case SET_CARRITO:
-  return {
-    ...state,
-    carrito: action.payload
-  };
+    case SET_CARRITO:
+      return {
+        ...state,
+        carrito: action.payload,
+      };
 
     case USERS_ERROR:
       return {
