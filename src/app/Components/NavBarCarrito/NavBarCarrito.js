@@ -22,56 +22,60 @@ export default function NavBarCarrito(props) {
     localStorage.setItem("cart", JSON.stringify(carrito));
   }, [carrito]);
 
-  const handlerDelete = (id) => {
-    const existingProduct = carrito.find((product) => product.id === id);
+const handlerDelete = (id) => {
+  const existingProductIndex = carrito.findIndex((product) => product.id === id);
+
+  if (existingProductIndex !== -1) {
+    const existingProduct = carrito[existingProductIndex];
 
     if (existingProduct.quantity > 1) {
-      // Si la cantidad es mayor a 1, mostrar un prompt para ingresar la cantidad a eliminar
-      const quantityToDelete = prompt(
-        `Ingrese la cantidad a eliminar (máximo: ${existingProduct.quantity})`,
-        "1"
-      );
-      const quantityToDeleteNumber = parseInt(quantityToDelete, 10);
-      if (
-        !isNaN(quantityToDeleteNumber) &&
-        quantityToDeleteNumber >= 1 &&
-        quantityToDeleteNumber <= existingProduct.quantity
-      ) {
-        dispatch(decreaseQuantity(id, quantityToDeleteNumber));
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "La cantidad ingresada es inválida",
-        });
-      }
+      // Si la cantidad existente es mayor a 1, restar 1 a la cantidad del producto
+      dispatch(decreaseQuantity(id, 1));
     } else {
-      // Si la cantidad es igual a 1, eliminar el producto del carrito
+      // Si la cantidad existente es 1 o menos, eliminar el producto del carrito
       dispatch(deleteCarrito(id));
     }
+  }
 
-    let timerInterval;
-    Swal.fire({
-      title: "Sacando producto del carrito",
-      html: "Espere <b></b> milisegundos.",
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: () => {
-        Swal.showLoading();
-        const b = Swal.getHtmlContainer().querySelector("b");
-        timerInterval = setInterval(() => {
-          b.textContent = Swal.getTimerLeft();
-        }, 100);
-      },
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
-    }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        console.log("I was closed by the timer");
-      }
-    });
+    if (existingProduct.quantity > 1) {
+      // If the existing quantity is greater than 1, prompt for the quantity to delete
+      Swal.fire({
+        title: "Borrar producto del carrito",
+        input: "number",
+        inputAttributes: {
+          min: 1,
+          max: existingProduct.quantity,
+          step: 1,
+        },
+        inputValue: existingProduct.quantity,
+        showCancelButton: true,
+        confirmButtonText: "Borrar",
+        cancelButtonText: "Cancelar",
+        inputValidator: (value) => {
+          if (value < 1 || value > existingProduct.quantity) {
+            return "Ingresa una cantidad válida";
+          }
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const quantityToDelete = parseInt(result.value, 10);
+          dispatch(decreaseQuantity(id, quantityToDelete));
+          Swal.fire(
+            "Producto borrado del carrito",
+            `Se ha eliminado ${quantityToDelete} unidad(es) del producto`,
+            "success"
+          );
+        }
+      });
+    } else {
+      // If the existing quantity is 1 or less, delete the product from the cart
+      dispatch(deleteCarrito(id));
+      Swal.fire(
+        "Producto borrado del carrito",
+        "Se ha eliminado el producto del carrito",
+        "success"
+      );
+    }
   };
 
   let totalPrice = 0;
@@ -82,7 +86,7 @@ export default function NavBarCarrito(props) {
     );
 
     if (existingProductIndex !== -1) {
-      // Si el producto ya existe, incrementar la cantidad
+      // If the product already exists, increase the quantity
       const existingProduct = accumulator[existingProductIndex];
       const updatedProduct = {
         ...existingProduct,
@@ -90,7 +94,7 @@ export default function NavBarCarrito(props) {
       };
       accumulator.splice(existingProductIndex, 1, updatedProduct);
     } else {
-      // Si el producto no existe, agregarlo al acumulador con cantidad 1
+      // If the product doesn't exist, add it to the accumulator with quantity 1
       accumulator.push({ ...currentProduct, quantity: 1 });
     }
 
@@ -136,7 +140,7 @@ export default function NavBarCarrito(props) {
       })}
       <div className={styles.precios}>
         {carrito.forEach((product) => {
-          totalPrice += product.price;
+          totalPrice += product.price * product.quantity; // Multiply the price by the quantity
         })}
         Precio Total: {totalPrice}$
         {isCarritoEmpty ? (
@@ -157,4 +161,4 @@ export default function NavBarCarrito(props) {
       </div>
     </div>
   );
-};
+}
