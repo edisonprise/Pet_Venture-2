@@ -8,9 +8,11 @@ import Swal from "sweetalert2";
 import MercadoPagoButton from "../mercadoPagoButton/mercadoPagoButton";
 import { updateUser } from "@/app/firebase/firebaseConfig";
 
+
 export default function NavBarCarrito(props) {
   const carrito = useSelector((state) => state.carrito);
   const userInfo = useSelector((state) => state.userInfo);
+  const userState = useSelector((state) => state.userState);
 
   const dispatch = useDispatch();
 
@@ -166,7 +168,11 @@ export default function NavBarCarrito(props) {
           </>
         ) : (
           <>
-            <MercadoPagoButton carrito={carrito} />
+            {userState === 3 ? (
+              <MercadoPagoButton carrito={carrito} />
+            ) : (
+              <p>Necesitas Registrarte Para Poder Comprar</p>
+            )}
             <Link href="/tienda">
               <p className={styles.deleteFilter}>Volver a la tienda</p>
             </Link>
