@@ -18,9 +18,8 @@ export default function NavBarCarrito(props) {
     const cartFromLocalStorage = JSON.parse(localStorage.getItem("cart"));
     if (cartFromLocalStorage) {
       dispatch({ type: "SET_CARRITO", payload: cartFromLocalStorage });
-    }
-    if (userInfo.carrito?.length !== 0) {
-      const userCarrito = [...carrito];
+    } else if (userInfo.carrito?.length !== 0) {
+      const userCarrito = [];
       userInfo.carrito?.forEach((element) => {
         userCarrito.push(element);
       });

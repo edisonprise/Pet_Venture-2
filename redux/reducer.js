@@ -1249,7 +1249,7 @@ export const initialState = {
   productDetail: [],
   userState: 1,
   userInfo: [],
-  carrito: []
+  carrito: [],
 };
 
 try {
@@ -1309,24 +1309,45 @@ export default function (state = initialState, action) {
         paginaactual: 1,
       };
 
-    case  ADD_CARRITO: 
-    return {
-      ...state,
-      carrito: [...state.carrito,action.payload]
-    }
+    case ADD_CARRITO:
+      return {
+        ...state,
+        carrito: [...state.carrito, action.payload],
+      };
 
     case DELETE_CARRITO:
-  const updatedCart = state.carrito.filter(item => item.id !== action.payload);
-  return {
-    ...state,
-    carrito: updatedCart
-  };
+      const { id, quantityToDelete } = action.payload;
+      const productIndex = state.carrito.findIndex(
+        (product) => product.id === id
+      );
 
-  case SET_CARRITO:
-  return {
-    ...state,
-    carrito: action.payload
-  };
+      if (productIndex !== -1) {
+        const updatedCart = [...state.carrito];
+        const product = updatedCart[productIndex];
+
+        if (product.quantity > quantityToDelete) {
+          // Si la cantidad es mayor a quantityToDelete, decrementar la cantidad
+          updatedCart[productIndex] = {
+            ...product,
+            quantity: product.quantity - quantityToDelete,
+          };
+        } else {
+          // Si la cantidad es menor o igual a quantityToDelete, eliminar el producto del carrito
+          updatedCart.splice(productIndex, 1);
+        }
+        state.userInfo.carrito = updatedCart;
+
+        return {
+          ...state,
+          carrito: updatedCart,
+        };
+      }
+
+    case SET_CARRITO:
+      return {
+        ...state,
+        carrito: action.payload,
+      };
 
     case USERS_ERROR:
       return {

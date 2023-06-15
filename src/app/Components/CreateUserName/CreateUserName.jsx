@@ -87,7 +87,7 @@ export default function CreateUserName() {
                             onChange={formik.handleChange}
                             value={formik.values.name}
                         />
-                        {formik.errors.email && formik.touched.email && <div>{formik.errors.email}</div>}
+                        {formik.errors.name && formik.touched.name && <div>{formik.errors.name}</div>}
                         <label htmlFor="userName">Crea tu Nombre de usuario: </label>
                         <input className={styles.input}
                             type="text"
@@ -96,7 +96,7 @@ export default function CreateUserName() {
                             onChange={formik.handleChange}
                             value={formik.values.userName}
                         />
-                        {formik.errors.email && formik.touched.email && <div>{formik.errors.email}</div>}
+                        {formik.errors.userName && formik.touched.userName && <div>{formik.errors.userName}</div>}
                         <button className={styles.deleteFilter} type="submit">Crear</button>
 
 
