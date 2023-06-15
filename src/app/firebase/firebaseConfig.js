@@ -14,14 +14,6 @@ import {
 import database from "../utils/db.json";
 
 const firebaseConfig = {
-<<<<<<< HEAD
-  apiKey: "AIzaSyAdjrZCa-2WG82dmHU1aII0g6cRdKYzoQg",
-  authDomain: "pet-venture-1777a.firebaseapp.com",
-  projectId: "pet-venture-1777a",
-  storageBucket: "pet-venture-1777a.appspot.com",
-  messagingSenderId: "202804090837",
-  appId: "1:202804090837:web:69fcf8f98a1c2eefc20f5c",
-=======
   // apiKey: "AIzaSyAdjrZCa-2WG82dmHU1aII0g6cRdKYzoQg",
   // authDomain: "pet-venture-1777a.firebaseapp.com",
   // projectId: "pet-venture-1777a",
@@ -36,7 +28,6 @@ const firebaseConfig = {
   messagingSenderId: "182451092395",
   appId: "1:182451092395:web:9e8c2bdf9cf6d1fa31b0ee",
   measurementId: "G-FVG72QFE24",
->>>>>>> 4c7cd9cc0d8b648ecd2918620c1deb56fe262b1e
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);

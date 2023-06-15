@@ -36,7 +36,6 @@
   top: 2px;
 }
 
-
 .img {
   width: 100%;
   height: 80px; /* Cambia el valor para ajustar la altura deseada */
@@ -96,15 +95,12 @@
   flex-direction: column;
   text-align: center;
 }
-<<<<<<< HEAD
-=======
 
 .button {
   position: relative;
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
- 
 }
 
 .deleteFilter {
@@ -127,5 +123,3 @@
 .deleteFilter:active {
   top: 2px;
 }
-
->>>>>>> 4c7cd9cc0d8b648ecd2918620c1deb56fe262b1e

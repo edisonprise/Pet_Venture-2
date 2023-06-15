@@ -13,8 +13,9 @@ function ProductsDash() {
   useEffect(() => {
     const getDbProducts = async () => {
       try {
-        // const response = (await axios.get("http://localhost:3000/api/products")).data;
-        const response = getFakeProducts();
+        const response = (await axios.get("http://localhost:3000/api/products"))
+          .data;
+        // const response = getFakeProducts();
         setDataArray(response);
         console.log("response", response);
       } catch (error) {
