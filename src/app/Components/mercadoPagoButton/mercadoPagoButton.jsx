@@ -31,9 +31,9 @@ const MercadoPagoButton = ({ carrito }) => {
                 <button className={styles.button} disabled>
                     <Loader />
                 </button>
-            ) : (
+            ) : ( 
                 <a className={styles.button} href={url}>
-                    Comprar ahora
+                    Pagar ahora
                 </a>
             )}
         </div>
