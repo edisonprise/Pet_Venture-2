@@ -97,6 +97,7 @@ export default function (state = initialState, action) {
       };
 
     case DELETE_CARRITO:
+<<<<<<< HEAD
       const updatedCart = state.carrito.filter(
         (item) => item.id !== action.payload
       );
@@ -105,6 +106,35 @@ export default function (state = initialState, action) {
         carrito: updatedCart,
       };
 
+=======
+      const { id, quantityToDelete } = action.payload;
+      const productIndex = state.carrito.findIndex(
+        (product) => product.id === id
+      );
+
+      if (productIndex !== -1) {
+        const updatedCart = [...state.carrito];
+        const product = updatedCart[productIndex];
+
+        if (product.quantity > quantityToDelete) {
+          // Si la cantidad es mayor a quantityToDelete, decrementar la cantidad
+          updatedCart[productIndex] = {
+            ...product,
+            quantity: product.quantity - quantityToDelete,
+          };
+        } else {
+          // Si la cantidad es menor o igual a quantityToDelete, eliminar el producto del carrito
+          updatedCart.splice(productIndex, 1);
+        }
+        state.userInfo.carrito = updatedCart;
+
+        return {
+          ...state,
+          carrito: updatedCart,
+        };
+      }
+
+>>>>>>> cec57955ce202e8c811fa9b3c57f0533bd251802
     case SET_CARRITO:
       return {
         ...state,
