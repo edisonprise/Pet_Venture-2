@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { use, useEffect } from "react";
 import Navbar from "../NavBar/NavBar";
 import Slider from "../Slider/Slider.jsx";
 import Ofertas from "../Ofertas/Ofertas";
@@ -9,7 +9,8 @@ import { useDispatch } from "react-redux";
 import { handleAuthStateChanged } from "@/app/utils/handleAuthStateChanged";
 import styles from "./Home.module.css";
 import Swal from "sweetalert2";
-import { registerNewPurchase } from "@/app/firebase/firebaseConfig";
+import { registerNewPurchase, updateUser } from "@/app/firebase/firebaseConfig";
+// import axios from "axios";
 
 export default function Home() {
   const dispatch = useDispatch()
@@ -29,7 +30,21 @@ export default function Home() {
     const registerPurchase = async () => {
       if (status === "approved") {
         console.log("carrito temporal", temporalCarrito);
-        await registerNewPurchase(temporalCarrito, id, user);
+        await registerNewPurchase(temporalCarrito, id, user?.username);
+
+        let newCarritoUser = []
+        if (user?.compras) {
+          newCarritoUser = [...user.compras]
+          temporalCarrito?.forEach(element => {
+            newCarritoUser.push(element)
+          });
+          const tmp = { ...user, compras: [...newCarritoUser], carrito: [] }
+          console.log("usuario actualizado", tmp)
+          await updateUser(tmp)
+        }
+
+
+
         Swal.fire({
           title: "Felicidades!",
           text: "Tu compra ah sido Exitosa",

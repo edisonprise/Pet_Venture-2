@@ -32,7 +32,7 @@ export default function NavBarCarrito(props) {
   useEffect(() => {
     console.log(carrito);
     localStorage.setItem("cart", JSON.stringify(carrito));
-    localStorage.setItem("user", JSON.stringify(userInfo.username));
+    localStorage.setItem("user", JSON.stringify(userInfo));
   }, [carrito]);
 
   const handlerDelete = async (id, quantityToDelete) => {

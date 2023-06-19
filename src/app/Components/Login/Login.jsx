@@ -37,10 +37,12 @@ export default function Login() {
               username: "",
               processCompleted: false,
               carrito: [],
-              compras: []
+              compras: [],
+              isActive: true
 
             })
             dispatch(setUserState(2))
+
             dispatch(setUserInfo(userInfo))
           }
         }
@@ -100,7 +102,7 @@ export default function Login() {
         console.error(error)
       }
 
-    }, validateOnBlur: true
+    },
   })
 
 
