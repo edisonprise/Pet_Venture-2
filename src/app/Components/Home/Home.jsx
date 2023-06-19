@@ -42,9 +42,6 @@ export default function Home() {
           console.log("usuario actualizado", tmp)
           await updateUser(tmp)
         }
-
-
-
         Swal.fire({
           title: "Felicidades!",
           text: "Tu compra ah sido Exitosa",
