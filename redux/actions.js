@@ -3,6 +3,7 @@
 import axios from "axios";
 
 import { getFakeProducts } from "@/app/fakeApi/getFakeProducts";
+
 import { DYNAMIC_ERROR_CODE } from "next/dist/client/components/hooks-server-context";
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const SEARCH = "SEARCH";
@@ -14,21 +15,21 @@ export const GET_BRANDS = "GET_BY_BRAND";
 export const DYNAMIC_NAME_SEARCH = "DYNAMIC_NAME_SEARCH";
 export const SET_FILTERED_PRODUCTS = "SET_FILTERED_PRODUCTS";
 export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
-
+export const CLEAR_USER_DATA = "CLEAR_USER_DATA";
 export const ADD_CARRITO = "ADD_CARRITO";
 export const DELETE_CARRITO = "DELETE_CARRITO";
-
 export const SET_USER_STATE = "SET_USER_STATE";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_CARRITO = "SET_CARRITO";
 
+export const ADD_COMMENT = "ADD_COMMENT";
 // export const GET_PRODUCTS_BY_NAME = "GET_PRODUCTS_BY_NAME";
 
 export function getProducts() {
   return async function (dispatch) {
     const response = (await axios.get("/api/products")).data;
 
-    //const response = getFakeProducts();
+    // const response = getFakeProducts();
 
     return dispatch({ type: GET_PRODUCTS, payload: response });
   };
@@ -49,13 +50,14 @@ export function addCarrito(id) {
 }
 
 // Borra productos del carrito
-export function deleteCarrito(id) {
+export function deleteCarrito(id, quantityToDelete) {
   return {
     type: DELETE_CARRITO,
-    payload: id,
+    payload: { id, quantityToDelete },
   };
 }
 
+// Producto por ID
 export function getProcuctById(id) {
   return async function (dispatch) {
     const response = (await axios.get(`/api/productsById?id=${id}`)).data;
@@ -104,10 +106,6 @@ export function getFilteredProducts(filters) {
   };
 }
 
-//& category - filter category
-//& subcategory - filter subcategory
-//& price - sort price
-//& name - filter name
 // * Actions de usuario
 export function setUserState(state) {
   return { type: SET_USER_STATE, payload: state };
@@ -115,4 +113,16 @@ export function setUserState(state) {
 
 export function setUserInfo(info) {
   return { type: SET_USER_INFO, payload: info };
+}
+export const addComment = (productId, comment) => {
+  return {
+    type: ADD_COMMENT,
+    payload: {
+      productId,
+      comment,
+    },
+  };
+};
+export function clearUserData() {
+  return { type: CLEAR_USER_DATA };
 }

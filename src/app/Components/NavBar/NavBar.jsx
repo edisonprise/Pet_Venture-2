@@ -1,21 +1,34 @@
+import Home from "@/app/components/Home/Home";
 import React from "react";
 import Link from "next/link";
 import PetVenture from "../../../../public/img/PetVenture.svg";
 import styles from "./Navbar.module.css";
 import { logout } from "@/app/firebase/firebaseConfig";
 import { useDispatch } from "react-redux";
-import { setUserState } from "../../../../redux/actions";
+import { clearUserData, setUserState } from "../../../../redux/actions";
 import { useSelector } from "react-redux";
+import { updateUser } from "@/app/firebase/firebaseConfig";
+import { User } from "@nextui-org/react";
 
 const Navbar = () => {
   const userState = useSelector((state) => state.userState);
   const userInfo = useSelector((state) => state.userInfo);
-  console.log(userInfo);
+  const carrito = useSelector((state) => state.carrito);
   const dispatch = useDispatch();
-  const handlerLogout = () => {
+  const handlerLogout = async () => {
+    console.log(userInfo)
+    if (carrito.length !== 0) {
+      carrito.forEach(element => {
+        userInfo.carrito.push(element)
+      });
+    }
+    await updateUser(userInfo)
+    localStorage.clear()
+    dispatch(clearUserData())
     logout();
     dispatch(setUserState(1));
   };
+
   return (
     <div className={styles.navbar}>
       <div className={styles.logo}>
@@ -30,6 +43,9 @@ const Navbar = () => {
 
           <li>
             <Link href="/tienda">Tienda</Link>
+          </li>
+          <li>
+            <Link href="/compras">Mis Compras</Link>
           </li>
           <li>
             <Link href="/formulario">Crear Producto</Link>
@@ -48,7 +64,7 @@ const Navbar = () => {
           </li>
           <li>
             {userState === 3 ? (
-              <img src={userInfo.profilePicture} width="50px" height="50px" />
+              <User color="success" bordered size="xl" src={userInfo.profilePicture} width="50px" height="50px" />
             ) : null}
           </li>
         </ul>

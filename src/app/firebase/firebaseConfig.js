@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+// import { collection } from "firebase/firestore";
 import {
   addDoc,
   collection,
@@ -10,16 +11,18 @@ import {
   query,
   setDoc,
   where,
+  arrayUnion,
 } from "firebase/firestore";
 import database from "../utils/db.json";
+import { merge } from "lodash-es";
 
 const firebaseConfig = {
-   apiKey: "AIzaSyAdjrZCa-2WG82dmHU1aII0g6cRdKYzoQg",
-   authDomain: "pet-venture-1777a.firebaseapp.com",
-   projectId: "pet-venture-1777a",
-   storageBucket: "pet-venture-1777a.appspot.com",
-   messagingSenderId: "202804090837",
-   appId: "1:202804090837:web:69fcf8f98a1c2eefc20f5c",
+  apiKey: "AIzaSyAdjrZCa-2WG82dmHU1aII0g6cRdKYzoQg",
+  authDomain: "pet-venture-1777a.firebaseapp.com",
+  projectId: "pet-venture-1777a",
+  storageBucket: "pet-venture-1777a.appspot.com",
+  messagingSenderId: "202804090837",
+  appId: "1:202804090837:web:69fcf8f98a1c2eefc20f5c",
 };
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -32,6 +35,15 @@ export const getAllProducts = async () => {
     products.push({ id: doc.id, ...doc.data() });
   });
   return products;
+};
+
+export const getAllUsers = async () => {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  const users = [];
+  querySnapshot.forEach((doc) => {
+    users.push({ id: doc.id, ...doc.data() });
+  });
+  return users;
 };
 
 export const addProduct = async (product) => {
@@ -73,6 +85,15 @@ export async function updateUser(user) {
     await setDoc(docRef, user);
   } catch (error) {}
 }
+export async function updateProduct(product) {
+  try {
+    const collectionRef = collection(db, "productos");
+    const docRef = doc(collectionRef, product.id);
+    await setDoc(docRef, product);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 export async function getUserInfo(uid) {
   const docRef = doc(db, "users", uid);
@@ -86,5 +107,25 @@ export default async function addDocuments() {
   for (const producto of database) {
     const ref = await addDoc(collection(db, "productos"), producto);
     console.log(ref);
+  }
+}
+
+export async function registerNewPurchase(carrito, id, user) {
+  console.log("carrito firebase", carrito, user);
+  try {
+    let fecha = new Date();
+    let opciones = { day: "2-digit", month: "2-digit", year: "2-digit" };
+    let fechaFormateada = fecha.toLocaleDateString("es-ES", opciones);
+
+    const collectionRef = collection(db, "compras");
+    const docRef = doc(collectionRef, id);
+
+    await setDoc(docRef, {
+      compras: [...carrito],
+      fecha: fechaFormateada,
+      user: user,
+    });
+  } catch (error) {
+    console.error("Error al agregar la compra:", error);
   }
 }

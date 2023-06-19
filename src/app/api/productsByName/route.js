@@ -18,8 +18,8 @@ export async function GET(request) {
       }
     });
 
-    return NextResponse.json(result);
+    return new NextResponse.json(result);
   } catch (error) {
-    return NextResponse(error);
+    return new NextResponse(error);
   }
 }
