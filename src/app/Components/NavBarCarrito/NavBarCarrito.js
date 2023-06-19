@@ -8,8 +8,7 @@ import Swal from "sweetalert2";
 import MercadoPagoButton from "../mercadoPagoButton/mercadoPagoButton";
 import { updateUser } from "@/app/firebase/firebaseConfig";
 
-
-export default function NavBarCarrito(props) {
+export default function NavBarCarrito() {
   const carrito = useSelector((state) => state.carrito);
   const userInfo = useSelector((state) => state.userInfo);
   const userState = useSelector((state) => state.userState);
@@ -39,7 +38,15 @@ export default function NavBarCarrito(props) {
   const handlerDelete = async (id, quantityToDelete) => {
     dispatch(deleteCarrito(id, quantityToDelete));
     await updateUser(userInfo);
+  const handlerDelete = async (id, quantityToDelete) => {
+    dispatch(deleteCarrito(id, quantityToDelete));
+    await updateUser(userInfo);
 
+    Swal.fire(
+      "Producto borrado del carrito",
+      "Se ha eliminado el producto del carrito",
+      "success"
+    );
     Swal.fire(
       "Producto borrado del carrito",
       "Se ha eliminado el producto del carrito",
@@ -56,6 +63,7 @@ export default function NavBarCarrito(props) {
 
     if (existingProductIndex !== -1) {
       // Si el producto ya existe, incrementar la cantidad
+      // Si el producto ya existe, incrementar la cantidad
       const existingProduct = accumulator[existingProductIndex];
       const updatedProduct = {
         ...existingProduct,
@@ -63,6 +71,7 @@ export default function NavBarCarrito(props) {
       };
       accumulator.splice(existingProductIndex, 1, updatedProduct);
     } else {
+      // Si el producto no existe, agregarlo al acumulador con cantidad 1
       // Si el producto no existe, agregarlo al acumulador con cantidad 1
       accumulator.push({ ...currentProduct, quantity: 1 });
     }
@@ -74,7 +83,7 @@ export default function NavBarCarrito(props) {
 
   return (
     <div className={styles.container}>
-      {groupedCarrito.map((e) => {
+      {carrito.map((e) => {
         return (
           <div className={styles.cartCard} key={e.id}>
             <div className={styles.cartCardInfo}>

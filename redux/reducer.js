@@ -16,10 +16,10 @@ import {
   SET_CARRITO,
   ADD_COMMENT,
   CLEAR_USER_DATA,
+  SET_TEMPORAL_CARRITO,
 } from "./actions";
 
 export const initialState = {
-  allProducts: [],
   filteredProducts: [],
   products: [],
   paginaactual: 1,
