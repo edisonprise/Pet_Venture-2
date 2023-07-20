@@ -44,6 +44,18 @@ const Formulario = () => {
         .max(20, "Maximo 20 caracteres")
         .min(5, "Minimo 5 caracteres")
         .required("Requerido"),
+      image: Yup.mixed()
+        .test(
+          "FILE_SIZE",
+          "Archivo muy grande",
+          (value) => value && value.size < 1024 * 1024
+        )
+        .test(
+          "FILE_TYPE",
+          "Archivo Invalido",
+          (value) => value && ["image/png", "image/jpeg"].includes(value.type)
+        )
+        .required("Requerido"),
     }),
 
     onSubmit: async (values) => {
@@ -120,7 +132,6 @@ const Formulario = () => {
               value={values.image}
               error={errors.image}
               helperText={errors.image}
-              
             />
           </Grid>
           <Grid>
@@ -155,6 +166,22 @@ const Formulario = () => {
               helperText={errors.subCategory}
             />
           </Grid>
+          {/*  <Grid>
+            <Input
+              rounded
+              bordered 
+              className={styles["field"]}
+              type="file"
+              label="file"
+              placeholder="Sube tu imagen aqui"
+              color="default"
+              name="file"
+              onChange={handleChange}
+              value={values.image}
+              error={errors.image}
+              helperText={errors.image}
+            />
+          </Grid> */}
         </Grid.Container>
         <div className={styles["btn-cont"]}>
           <Button type="submit" className={styles["btn-green"]}>
