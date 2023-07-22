@@ -1,0 +1,35 @@
+.center {
+  width: 100%;
+}
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+/* .btn {
+  } */
+
+.btn {
+  display: inline-block;
+  color: rgb(217, 177, 19);
+  /* float: left; */
+  padding: 8px 16px;
+  text-decoration: none;
+  /* transition: background-color 1 s; */
+  border: 1px solid rgb(216, 180, 20);
+  margin: 0 4px;
+}
+
+.btn:active {
+  background-color: rgb(192, 151, 28);
+  color: white;
+  /* border: 1px solid #4caf50; */
+}
+
+.btn:hover:not(.active) {
+  background-color: rgb(221, 169, 26);
+  color: white;
+  /* font-weight: bold; */
+}

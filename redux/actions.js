@@ -1,6 +1,9 @@
+"use client";
+
 import axios from "axios";
 
 import { getFakeProducts } from "@/app/fakeApi/getFakeProducts";
+
 import { DYNAMIC_ERROR_CODE } from "next/dist/client/components/hooks-server-context";
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const SEARCH = "SEARCH";
@@ -11,7 +14,15 @@ export const GET_SUB_CATEGORIES = "GET_SUB_CATEGORY";
 export const GET_BRANDS = "GET_BY_BRAND";
 export const DYNAMIC_NAME_SEARCH = "DYNAMIC_NAME_SEARCH";
 export const SET_FILTERED_PRODUCTS = "SET_FILTERED_PRODUCTS";
+export const GET_PRODUCT_BY_ID = "GET_PRODUCT_BY_ID";
+export const CLEAR_USER_DATA = "CLEAR_USER_DATA";
+export const ADD_CARRITO = "ADD_CARRITO";
+export const DELETE_CARRITO = "DELETE_CARRITO";
+export const SET_USER_STATE = "SET_USER_STATE";
+export const SET_USER_INFO = "SET_USER_INFO";
+export const SET_CARRITO = "SET_CARRITO";
 
+export const ADD_COMMENT = "ADD_COMMENT";
 // export const GET_PRODUCTS_BY_NAME = "GET_PRODUCTS_BY_NAME";
 
 export function getProducts() {
@@ -19,12 +30,43 @@ export function getProducts() {
     const response = (await axios.get("/api/products")).data;
 
     // const response = getFakeProducts();
+
     return dispatch({ type: GET_PRODUCTS, payload: response });
   };
 }
 
-// trae las categorias para los filtros
+// Carrito
+export function addCarrito(id) {
+  return async function (dispatch, getState) {
+    const response = await axios.get(`/api/productsById?id=${id}`);
+    const producto = response.data[0];
+    dispatch({ type: ADD_CARRITO, payload: producto });
 
+    const { carrito } = getState();
+    localStorage.setItem("cart", JSON.stringify(carrito));
+
+    return producto;
+  };
+}
+
+// Borra productos del carrito
+export function deleteCarrito(id, quantityToDelete) {
+  return {
+    type: DELETE_CARRITO,
+    payload: { id, quantityToDelete },
+  };
+}
+
+// Producto por ID
+export function getProcuctById(id) {
+  return async function (dispatch) {
+    const response = (await axios.get(`/api/productsById?id=${id}`)).data;
+
+    return dispatch({ type: GET_PRODUCT_BY_ID, payload: response });
+  };
+}
+// trae las categorias para los filtros
+//ojo muchas peticiones
 export function getBrands(filteredBrands) {
   console.log(filteredBrands);
 
@@ -58,41 +100,29 @@ export function getFilteredProducts(filters) {
     result = (b) => b.brand.includes(filters.brand);
   }
 
-  // if (filters.category !== "none") {
-  //   result = (c) => c.category.includes(filters.category);
-  // }
-
-  // if (filters.subCategory !== "none") {
-  //   result = response.filter((b) =>
-  //     b.subCategory.includes(filters.subCategory)
-  //   );
-  // }
-
-  // if (filters.price !== "none") {
-  //   if (filters.price === "low") {
-  //     result = response.sort((a, b) => {
-  //     a.price -
-  //         b.price;
-  //     });
-  //   } else if (filters.price === "high") {
-  //     result = response.sort(
-  //       (a, b) =>
-  //        b.price -
-  //      a.price
-  //     );
-  //   }
-  // }
-
-  console.log("actions", filters);
-  console.log("action products", result);
-
   return {
     type: GET_FILTERED_PRODUCTS,
     payload: result,
   };
 }
 
-//& category - filter category
-//& subcategory - filter subcategory
-//& price - sort price
-//& name - filter name
+// * Actions de usuario
+export function setUserState(state) {
+  return { type: SET_USER_STATE, payload: state };
+}
+
+export function setUserInfo(info) {
+  return { type: SET_USER_INFO, payload: info };
+}
+export const addComment = (productId, comment) => {
+  return {
+    type: ADD_COMMENT,
+    payload: {
+      productId,
+      comment,
+    },
+  };
+};
+export function clearUserData() {
+  return { type: CLEAR_USER_DATA };
+}

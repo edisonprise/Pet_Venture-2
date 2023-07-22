@@ -1,0 +1,22 @@
+.main {
+  background: rgb(219, 213, 213);
+}
+
+.container {
+  display: flex;
+
+  /* background: rgb(231, 28, 28); */
+  min-height: fit-content;
+  margin-top: 10px;
+  width: 90%;
+}
+
+.section {
+  display: flex;
+
+  /* background: rgb(231, 28, 28); */
+  margin-left: 200px;
+  margin-top: 5px;
+
+  width: 100%;
+}

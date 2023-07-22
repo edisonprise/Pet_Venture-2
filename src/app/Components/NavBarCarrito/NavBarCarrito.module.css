@@ -1,0 +1,105 @@
+.cartContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    
+  }
+  
+  .cartCard {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    width: 20%;
+    display: flex;
+    margin: 5px;
+  padding: 10px;
+  order: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: stretch;
+  background-image: url("https://as2.ftcdn.net/v2/jpg/02/02/31/39/1000_F_202313943_RmQzYfyv9Yi9rRFwkkFuITTR5ERs4xJM.jpg");
+  }
+  
+  .cartCardInfo {
+    margin-bottom: 10px;
+  }
+  
+  .cartCardImage {
+    width: 75%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .cartCardButton {
+    background-color: #e6351a;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .backtotienda {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin: 20px;
+  }
+  
+  .deleteFilter {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+  }
+  
+  .precios {
+    position: fixed;
+    top: 0;
+    
+    right:0;
+    width: 14%;
+    background-color: rgb(175, 163, 163);
+    padding: 5px;
+    font-weight: bold;
+  }
+  
+  .rowContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .container {
+    background-image: url("https://img.freepik.com/fotos-premium/acuarela-patrones-fisuras-huellas-pata-gato-fondo-acuarela-pata-gato_467247-273.jpg?w=826");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      display: flex;
+      
+      flex-wrap: wrap;
+    }
+    
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      background-image: url("https://as2.ftcdn.net/v2/jpg/02/02/31/39/1000_F_202313943_RmQzYfyv9Yi9rRFwkkFuITTR5ERs4xJM.jpg");
+      background-size: cover; /* Ajusta el tamaño de la imagen al contenedor */
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 300px;
+      width: 150px;
+      margin: 5px;
+      padding: 10px;
+      border: 1px solid black;
+      border-radius: 5px;
+      text-align: center;
+      justify-content: space-evenly;
+    }
+    
+    

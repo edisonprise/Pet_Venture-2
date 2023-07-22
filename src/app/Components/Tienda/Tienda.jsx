@@ -1,54 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Tienda.module.css";
 import Filtros from "../Filtros/Filtros";
 import Products from "../Products/Products";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getBrands,
-  getCategories,
-  getProducts,
-  getSubCategories,
-} from "../../../../redux/actions";
+
+import { getProducts } from "../../../../redux/actions";
+import Pagination from "../Pagination/Pagination";
+import { handleAuthStateChanged } from "@/app/utils/handleAuthStateChanged";
 
 const Tienda = () => {
-  let products = useSelector((state) => state.products);
-  let brands = useSelector((state) => state.brands);
-  let categories = useSelector((state) => state.categories);
-  let subCategories = useSelector((state) => state.subCategories);
-
   const dispatch = useDispatch();
 
-  // const filterBrands = () => {
-  //   const brandsArr = products.map((b) => b.brand);
-  //   const uniqueBrands = [...new Set(brandsArr)];
-  //   // console.log("uniqueBrands", uniqueBrands);
-  //   return uniqueBrands;
-  // };
+  const allProducts = useSelector((state) => state.filteredProducts);
 
-  // const filterCategory = () => {
-  //   const categoryArr = products.map((b) => b.category);
-  //   const uniqueCategory = [...new Set(categoryArr)];
-  //   // console.log("uniqueCategory", uniqueCategory);
-  //   return uniqueCategory;
-  // };
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(15);
 
-  // const filterSubCategory = () => {
-  //   const subCategoryArr = products.map((b) => b.subCategory);
-  //   const uniqueSubCategory = [...new Set(subCategoryArr)];
-  //   return uniqueSubCategory;
-  // };
+  const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+  const endIndex = currentPage * itemsPerPage;
+  const startIndex = endIndex - itemsPerPage;
 
-  // useEffect(() => {
-  //   // dispatch(getBrands(filterBrands()));
-  //   // dispatch(getSubCategories(filterSubCategory()));
-  //   // dispatch(getCategories(filterCategory()));
-  //   dispatch(getProducts());
-  // }, [dispatch]);
+  const itemsToShow = allProducts?.slice(startIndex, endIndex);
+
+  useEffect(() => {
+    dispatch(getProducts())
+    handleAuthStateChanged(dispatch)
+  }, []);
 
   return (
     <div className={styles.container}>
       <Filtros />
-      <Products />
+      <Products itemsToShow={itemsToShow} />
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={totalPages}
+      // paginate={paginate}
+      />
     </div>
   );
 };

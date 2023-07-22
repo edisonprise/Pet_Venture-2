@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getAllProducts } from "@/app/Firebase/firebaseConfig";
+import { getAllProducts } from "@/app/firebase/firebaseConfig";
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -18,8 +18,8 @@ export async function GET(request) {
       }
     });
 
-    return NextResponse.json(result);
+    return new NextResponse.json(result);
   } catch (error) {
-    return NextResponse(error);
+    return new NextResponse(error);
   }
 }
